@@ -6,6 +6,9 @@ import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
 import PodcastListComponent from '../components/PodcastListComponent';
 import { encode } from 'base-64';
+import CardListComponent from '../components/TopNewsListComponent';
+import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
+import BrandedPodcastListComponent from '../components/BrandedPodcastListComponent';
 
 function BNR(props: any) {
     return (
@@ -17,7 +20,7 @@ function BNR(props: any) {
             <Menu />
             <div className="body">
                 <main>
-                    <PodcastListComponent
+                    <CardListComponent
                         title="Top 3 nieuwsfragmenten"
                         items={[
                             props.home.newsFragmentsModel.teaserFragment1,
@@ -25,11 +28,11 @@ function BNR(props: any) {
                             props.home.newsFragmentsModel.teaserFragment3,
                         ]}
                     />
-                    <PodcastListComponent
+                    <LatestPodcastListComponent
                         title="Nieuwste podcasts"
                         items={props.home.homeLatestPodcastModel.teasers}
                     />
-                    <PodcastListComponent
+                    <BrandedPodcastListComponent
                         title="Brand stories"
                         items={props.home.brandstoriesTeaserModel.teasers}
                     />

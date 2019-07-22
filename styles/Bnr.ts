@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const BnrPageStyle = createGlobalStyle`
 html {
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 header {
