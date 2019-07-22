@@ -4,7 +4,6 @@ import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
-import { encode } from 'base-64';
 import CardListComponent from '../components/TopNewsListComponent';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
 import BrandedPodcastListComponent from '../components/BrandedPodcastListComponent';
@@ -49,7 +48,7 @@ function BNR(props: any) {
                     />
                 </aside>
             </div>
-            {props.etag} - {props.updateTimestamp}
+            {props.etag}
         </PageStyle>
     );
 }
@@ -73,7 +72,6 @@ BNR.getInitialProps = async () => {
     return {
         etag: etag(`${JSON.stringify(home)}`),
         home,
-        updateTimestamp: new Date().toUTCString(),
     };
 };
 
