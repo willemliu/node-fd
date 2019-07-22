@@ -8,7 +8,7 @@ export interface Props {
 export default (props: Props) => {
     return (
         <StyledList>
-            <h1>{props.title}</h1>
+            <h2>{props.title}</h2>
             <ul>
                 {props.items.map((item: any) => {
                     return (
@@ -61,14 +61,14 @@ export default (props: Props) => {
 };
 
 const StyledList = styled.section`
-    h1 {
+    h2 {
         padding: 0.5rem 0;
         text-transform: uppercase;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         color: rgba(0, 0, 0, 0.5);
     }
-    h1 {
+    h2 {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         margin: 0.5rem 0;
     }
@@ -76,12 +76,23 @@ const StyledList = styled.section`
         list-style: none;
         padding: 0;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        @media only screen and (min-width: 641px) {
+            flex-direction: row;
+        }
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     figure {
+        @media only screen and (max-width: 640px) {
+            float: left;
+        }
         margin: 0;
         img {
-            width: 100%;
+            width: 96px;
+            @media only screen and (min-width: 641px) {
+                width: 100%;
+            }
         }
     }
     a {
@@ -91,12 +102,13 @@ const StyledList = styled.section`
         width: 100%;
     }
     li {
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
-        &:not(:last-child) {
-            margin-right: 0.5rem;
+        flex: 1 1 auto;
+        @media only screen and (min-width: 641px) {
+            flex: 0 1 calc(33% - (0.5rem / 3));
         }
+        padding: 0;
+        margin: 0 0 0.5rem 0;
+        overflow: hidden;
         box-shadow: 0 2px 0.2px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         background-color: white;

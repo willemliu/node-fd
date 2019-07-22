@@ -8,7 +8,7 @@ export interface Props {
 export default (props: Props) => {
     return (
         <StyledList>
-            <h1>{props.title}</h1>
+            <h2>{props.title}</h2>
             <ul>
                 {props.items.map((item: any) => {
                     return (
@@ -61,14 +61,14 @@ export default (props: Props) => {
 };
 
 const StyledList = styled.section`
-    h1 {
+    h2 {
         padding: 0.5rem 0;
         text-transform: uppercase;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         color: rgba(0, 0, 0, 0.5);
     }
-    h1 {
+    h2 {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         margin: 0.5rem 0;
     }

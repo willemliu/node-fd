@@ -4,8 +4,8 @@ import { SquareTeaserStyle } from '@fdmg/fd-square-teaser';
 import { OpeningTeaserStyle } from '@fdmg/fd-opening-teaser';
 
 const GlobalStyle = createGlobalStyle`
-html {
-    background-color: #f1ded0;
+body {
+    margin: 0;
 }
 .fd-card {
     margin-bottom: 1rem;

@@ -8,7 +8,7 @@ export interface Props {
 export default (props: Props) => {
     return (
         <StyledList>
-            <h1>{props.title}</h1>
+            <h2>{props.title}</h2>
             <ul>
                 {props.items.map((item: any) => {
                     return (
@@ -100,7 +100,7 @@ const StyledList = styled.section`
         padding: 0;
         margin: 0 0 0.5rem 0;
         overflow: hidden;
-        box-shadow: 0 2px 0.2px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 0.2px rgba(255, 0, 0, 1);
         border-radius: 5px;
         background-color: white;
         section {
@@ -116,19 +116,19 @@ const StyledList = styled.section`
             color: rgba(0, 0, 0, 0.5);
             font-family: Arial, Helvetica, sans-serif;
         }
-        animation: branded-glow 4s ease-in-out;
+        animation: branded-glow 6s linear;
         animation-iteration-count: infinite;
     }
 
     @keyframes branded-glow {
         0% {
-            box-shadow: 0 2px 0.2px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 0.2px 0px rgba(255, 0, 0, 1);
         }
         50% {
-            box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 10px 0px rgba(255, 0, 0, 0.6);
         }
-        100% {
-            box-shadow: 0 2px 0.2px 0px rgba(0, 0, 0, 0.1);
+        85% {
+            box-shadow: 0 2px 0.2px 0px rgba(255, 0, 0, 1);
         }
     }
 `;
