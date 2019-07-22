@@ -6,7 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer(
     withOffline({
-        generateEtags: false,
+        generateEtags: true,
         target:
             process.env.NOW_SERVERLESS === 'false' ? 'server' : 'serverless',
         pageExtensions: ['jsx', 'js', 'ts', 'tsx'],
