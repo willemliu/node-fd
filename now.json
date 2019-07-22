@@ -1,0 +1,34 @@
+{
+    "version": 2,
+    "alias": [],
+    "builds": [{ "src": "package.json", "use": "@now/next" }],
+    "build": {
+        "env": {
+            "BASIC_AUTH": "@dev-bnr-basic-auth",
+            "PROXY": "@dev-proxy"
+        }
+    },
+    "env": {
+        "BASIC_AUTH": "@dev-bnr-basic-auth",
+        "PROXY": "@dev-proxy"
+    },
+    "routes": [
+        {
+            "src": "^/service-worker.js$",
+            "dest": "/_next/static/service-worker.js",
+            "headers": {
+                "cache-control": "public, max-age=43200, max-age=0, immutable",
+                "Service-Worker-Allowed": "/"
+            }
+        },
+        {
+            "src": "/(.+)/(?<articleId>[\\d]+)",
+            "dest": "/?articleId=$articleId"
+        },
+        {
+            "src": "/(.+)/(?<articleId>[\\d]+)/+.*$",
+            "dest": "/?articleId=$articleId"
+        }
+    ],
+    "regions": ["dub1"]
+}

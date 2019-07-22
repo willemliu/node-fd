@@ -1,0 +1,22 @@
+{
+    "name": "Persistent Component POC",
+    "short_name": "Persistent Component",
+    "background_color": "#FFFFFF",
+    "theme_color": "#000000",
+    "description": "Persistent Component POC",
+    "display": "standalone",
+    "start_url": "/?isPwa=true",
+    "icons": [{
+      "src": "/static/144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }, {
+      "src": "/static/512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }, {
+      "src": "/static/192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }]
+}
