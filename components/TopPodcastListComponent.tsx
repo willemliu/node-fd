@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledH2, StyledAnchor, CardSection } from '../styles/Bnr';
 
 export interface Props {
     title: string;
@@ -8,12 +9,12 @@ export interface Props {
 export default (props: Props) => {
     return (
         <StyledList>
-            <h2>{props.title}</h2>
+            <StyledH2>{props.title}</StyledH2>
             <ul>
                 {props.items.map((item: any) => {
                     return (
                         <li key={item.id}>
-                            <a
+                            <StyledAnchor
                                 href={`https://dev.bnr.nl${item.publicationUrl}`}
                             >
                                 {item.picture ? (
@@ -44,14 +45,14 @@ export default (props: Props) => {
                                         </picture>
                                     </figure>
                                 ) : null}
-                                <section>
+                                <CardSection>
                                     <h3>{item.title}</h3>
                                     <time>
                                         Duur: {item.durationInMinutes} min
                                     </time>
                                     <h3>{item.programTitle}</h3>
-                                </section>
-                            </a>
+                                </CardSection>
+                            </StyledAnchor>
                         </li>
                     );
                 })}
@@ -62,17 +63,6 @@ export default (props: Props) => {
 
 const StyledList = styled.section`
     flex: 1 1 auto;
-    h2 {
-        padding: 0.5rem 0;
-        text-transform: uppercase;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        color: rgba(0, 0, 0, 0.5);
-    }
-    h2 {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        margin: 0.5rem 0;
-    }
     ul {
         list-style: none;
         padding: 0;
@@ -85,10 +75,6 @@ const StyledList = styled.section`
         img {
             width: 96px;
         }
-    }
-    a {
-        color: inherit;
-        text-decoration: none;
     }
     li {
         padding: 0;
@@ -103,16 +89,6 @@ const StyledList = styled.section`
             display: flex;
             flex-direction: column;
             overflow: hidden;
-        }
-
-        h3 {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 1rem;
-            margin: 0;
-        }
-        time {
-            color: rgba(0, 0, 0, 0.5);
-            font-family: Arial, Helvetica, sans-serif;
         }
     }
 `;

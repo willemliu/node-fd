@@ -64,7 +64,7 @@ BNR.getInitialProps = async () => {
         //     },
         // }).then((res) => res.json());
         home = await fetch(
-            `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/dev`
+            `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc`
         ).then((res) => res.json());
     } catch (e) {
         console.error(e);
