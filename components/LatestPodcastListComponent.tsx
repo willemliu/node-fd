@@ -8,7 +8,7 @@ export interface Props {
 export default (props: Props) => {
     return (
         <StyledList>
-            <h1>{props.title}</h1>
+            <h2>{props.title}</h2>
             <ul>
                 {props.items.map((item: any) => {
                     return (
