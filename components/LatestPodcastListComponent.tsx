@@ -96,10 +96,10 @@ const StyledList = styled.section`
     li {
         flex: 1 1 100%;
         @media only screen and (min-width: 1024px) {
-            flex: 0 1 calc(50% - 0.5rem);
+            flex: 0 1 calc(50% - 0.25rem);
         }
         padding: 0;
-        margin: 0 0 1rem 0;
+        margin: 0 0 0.5rem 0;
         overflow: hidden;
         box-sizing: content-box;
         box-shadow: 0 2px 0.2px rgba(0, 0, 0, 0.1);

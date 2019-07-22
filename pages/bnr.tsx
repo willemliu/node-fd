@@ -4,11 +4,12 @@ import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
-import PodcastListComponent from '../components/PodcastListComponent';
 import { encode } from 'base-64';
 import CardListComponent from '../components/TopNewsListComponent';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
 import BrandedPodcastListComponent from '../components/BrandedPodcastListComponent';
+import TopPodcastListComponent from '../components/TopPodcastListComponent';
+import SpecialsListComponent from '../components/SpecialsListComponent';
 
 function BNR(props: any) {
     return (
@@ -36,13 +37,13 @@ function BNR(props: any) {
                         title="Brand stories"
                         items={props.home.brandstoriesTeaserModel.teasers}
                     />
-                    <PodcastListComponent
+                    <SpecialsListComponent
                         title="BNR specials"
                         items={props.home.specialTeasersModel.teasers}
                     />
                 </main>
                 <aside>
-                    <PodcastListComponent
+                    <TopPodcastListComponent
                         title="Top 5 podcasts"
                         items={props.home.editorsPickModel.teasers}
                     />
