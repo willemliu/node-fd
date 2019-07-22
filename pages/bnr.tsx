@@ -70,7 +70,7 @@ BNR.getInitialProps = async () => {
         console.error(e);
     }
     return {
-        etag: etag(`${JSON.stringify(home)}`),
+        // etag: etag(`${JSON.stringify(home)}`),
         home,
     };
 };

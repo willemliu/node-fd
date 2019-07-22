@@ -7,9 +7,9 @@ export default class PersistentApp extends App {
         let pageProps: any = {};
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx);
-            if (ctx.res) {
-                ctx.res.setHeader('Etag', `${pageProps.etag}`);
-            }
+            // if (ctx.res && pageProps.etag) {
+            //     ctx.res.setHeader('Etag', `${pageProps.etag}`);
+            // }
         }
 
         return { pageProps };
