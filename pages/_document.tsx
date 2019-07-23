@@ -7,10 +7,7 @@ export default class MyDocument extends Document<any> {
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
-        // ctx.res.setHeader(
-        //     'Cache-Control',
-        //     'max-age=0, max-stale, s-maxage=1, stale-while-revalidate=30'
-        // );
+        ctx.res.setHeader('Cache-Control', 'max-age=0, max-stale, s-maxage=1');
 
         try {
             ctx.renderPage = () =>
