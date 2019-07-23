@@ -90,20 +90,12 @@ const StyledList = styled.section`
         border-radius: 5px;
         background-color: white;
         > a {
-            display: flex;
             height: 96px;
         }
         section {
             padding: 0.5rem;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-        }
-
-        h3 {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
         }
     }
 `;
