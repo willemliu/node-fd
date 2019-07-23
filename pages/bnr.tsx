@@ -64,7 +64,6 @@ BNR.getInitialProps = async () => {
                 'x-fdmg-json': 'true',
             },
         }).then((res) => res.json());
-        console.log(JSON.stringify(home, null, 2));
         // home = await fetch(
         //     `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc`
         // ).then((res) => res.json());
