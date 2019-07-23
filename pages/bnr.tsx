@@ -49,7 +49,7 @@ function BNR(props: any) {
                     />
                 </aside>
             </div>
-            {props.etag} {new Date().toUTCString()}
+            {props.etag} {props.updateTimestamp}
         </PageStyle>
     );
 }
@@ -64,6 +64,7 @@ BNR.getInitialProps = async () => {
                 'x-fdmg-json': 'true',
             },
         }).then((res) => res.json());
+        console.log(JSON.stringify(home, null, 2));
         // home = await fetch(
         //     `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc`
         // ).then((res) => res.json());
@@ -73,6 +74,7 @@ BNR.getInitialProps = async () => {
     return {
         etag: etag(`${JSON.stringify(home)}`),
         home,
+        updateTimestamp: new Date().toUTCString(),
     };
 };
 
