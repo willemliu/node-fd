@@ -23,6 +23,31 @@ const PageStyle = styled.div`
     aside {
         flex: 1 0 300px;
     }
+
+    .ripple {
+        position: relative;
+        overflow: hidden;
+        .ink {
+            display: block;
+            position: absolute;
+            background: inherit;
+            filter: invert(1);
+            opacity: 0.2;
+            border-radius: 100%;
+            transform: scale(0);
+        }
+
+        .animate {
+            animation: ripple 0.65s linear;
+        }
+    }
+
+    @keyframes ripple {
+        100% {
+            opacity: 0;
+            transform: scale(2.5);
+        }
+    }
 `;
 
 export { PageStyle };

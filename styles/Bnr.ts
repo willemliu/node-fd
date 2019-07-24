@@ -8,28 +8,6 @@ html {
 .body {
     margin: .5rem;
 }
-
-.ripple {
-    position: relative;
-    .ink {
-        display: block;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.06);
-        border-radius: 100%;
-        transform: scale(0);
-    }
-
-    .animate {
-        animation: ripple 0.65s linear;
-    }
-}
-
-@keyframes ripple {
-    100% {
-        opacity: 0;
-        transform: scale(2.5);
-    }
-}
 `;
 
 const StyledH2 = styled.h2`

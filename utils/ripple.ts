@@ -3,9 +3,8 @@ export function ripple(e: React.MouseEvent) {
     if (!targetEl.classList.contains('ripple')) {
         return;
     }
-    let inkEl = targetEl.querySelector('.ink') as HTMLElement;
 
-    inkEl = document.createElement('span');
+    let inkEl = document.createElement('span');
     inkEl.classList.add('ink');
     const size = Math.max(targetEl.offsetWidth, targetEl.offsetHeight);
     inkEl.style.width = inkEl.style.height = size + 'px';

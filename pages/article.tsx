@@ -6,7 +6,20 @@ import { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 
-function Article(props: any) {
+interface Article {
+    articleview: {
+        article: {
+            title: string;
+            intro: string;
+            content: string;
+        };
+    };
+}
+interface Props {
+    article: Article;
+}
+
+function Article(props: Props) {
     const router = useRouter();
     const { articleId, section, subSection, title } = router.query;
     return (
@@ -46,15 +59,30 @@ function Article(props: any) {
     );
 }
 
-Article.getInitialProps = async (ctx: NextPageContext) => {
+Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     const { articleId } = ctx.query;
-    let article;
+    let article: Article;
     try {
         article = await fetch(`${process.env.PROXY}/-/${articleId}/-`).then(
-            (res) => res.json()
+            (res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error(`${res.status}`);
+                }
+            }
         );
     } catch (e) {
         console.error(e);
+        article = {
+            articleview: {
+                article: {
+                    content: '',
+                    intro: '',
+                    title: '',
+                },
+            },
+        };
     }
     return { article };
 };

@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import { ripple } from '../utils/ripple';
 
 export default () => {
     return (
-        <StyledHeader>
+        <StyledHeader className="ripple" onClick={ripple}>
             <img src="/static/logo65x104.png" alt="BNR Nieuwsradio" />
             <Link href="/" as="/" prefetch={true}>
                 <a>Home</a>

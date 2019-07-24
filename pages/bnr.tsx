@@ -4,14 +4,32 @@ import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
-import CardListComponent from '../components/TopNewsListComponent';
+import TopNewsListComponent from '../components/TopNewsListComponent';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
 import BrandedPodcastListComponent from '../components/BrandedPodcastListComponent';
 import TopPodcastListComponent from '../components/TopPodcastListComponent';
 import SpecialsListComponent from '../components/SpecialsListComponent';
 import { encode } from 'base-64';
 
-function BNR(props: any) {
+interface Home {
+    newsFragmentsModel: {
+        teaserFragment1: any;
+        teaserFragment2: any;
+        teaserFragment3: any;
+    };
+    homeLatestPodcastModel: { teasers: [] };
+    brandstoriesTeaserModel: { teasers: [] };
+    specialTeasersModel: { teasers: [] };
+    editorsPickModel: { teasers: [] };
+}
+
+interface Props {
+    etag?: string;
+    home: Home;
+    updateTimestamp?: string;
+}
+
+function BNR(props: Props) {
     return (
         <PageStyle>
             <BnrPageStyle />
@@ -31,7 +49,7 @@ function BNR(props: any) {
             <Menu />
             <div className="body">
                 <main>
-                    <CardListComponent
+                    <TopNewsListComponent
                         title="Top 3 nieuwsfragmenten"
                         items={[
                             props.home.newsFragmentsModel.teaserFragment1,
@@ -64,16 +82,33 @@ function BNR(props: any) {
     );
 }
 
-BNR.getInitialProps = async () => {
-    let home = [];
+BNR.getInitialProps = async (): Promise<Props> => {
+    let home: Home;
     try {
         // home = await fetch(
         //     `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`
         // ).then((res) => res.json());
 
-        home = await fetch(`${process.env.PROXY}`).then((res) => res.json());
+        home = await fetch(`${process.env.PROXY}`).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(`${res.status}`);
+            }
+        });
     } catch (e) {
         console.error(e);
+        home = {
+            brandstoriesTeaserModel: { teasers: [] },
+            editorsPickModel: { teasers: [] },
+            homeLatestPodcastModel: { teasers: [] },
+            newsFragmentsModel: {
+                teaserFragment1: { id: 1 },
+                teaserFragment2: { id: 2 },
+                teaserFragment3: { id: 3 },
+            },
+            specialTeasersModel: { teasers: [] },
+        };
     }
     return {
         etag: etag(`${JSON.stringify(home)}`),
