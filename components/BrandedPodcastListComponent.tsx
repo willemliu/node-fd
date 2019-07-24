@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { StyledH2, StyledAnchor, CardSection } from '../styles/Bnr';
 import { ripple } from '../utils/ripple';
+import Link from 'next/link';
 
 export interface Props {
     title: string;
@@ -15,45 +16,53 @@ export default (props: Props) => {
                 {props.items.map((item: any) => {
                     return (
                         <li key={item.id} className="ripple" onClick={ripple}>
-                            <StyledAnchor
-                                href={`https://dev.bnr.nl${item.publicationUrl}`}
-                            >
-                                {item.picture ? (
-                                    <figure>
-                                        <picture>
-                                            <source
-                                                media="(max-width:640px)"
-                                                srcSet={
-                                                    item.picture.imageUrlSmall
-                                                }
-                                            />
-                                            <source
-                                                media="(max-width:860px)"
-                                                srcSet={
-                                                    item.picture.imageUrlMedium
-                                                }
-                                            />
-                                            <source
-                                                media="(min-width:861px)"
-                                                srcSet={
-                                                    item.picture.imageUrlLarge
-                                                }
-                                            />
-                                            <img
-                                                src={item.picture.baseImageUrl}
-                                                alt={item.title}
-                                            />
-                                        </picture>
-                                    </figure>
-                                ) : null}
-                                <CardSection>
-                                    <h3>{item.title}</h3>
-                                    <time>
-                                        Duur: {item.durationInMinutes} min
-                                    </time>
-                                    <h3>{item.programTitle}</h3>
-                                </CardSection>
-                            </StyledAnchor>
+                            <Link href={item.publicationUrl}>
+                                <StyledAnchor
+                                    href={`https://dev.bnr.nl${item.publicationUrl}`}
+                                >
+                                    {item.picture ? (
+                                        <figure>
+                                            <picture>
+                                                <source
+                                                    media="(max-width:640px)"
+                                                    srcSet={
+                                                        item.picture
+                                                            .imageUrlSmall
+                                                    }
+                                                />
+                                                <source
+                                                    media="(max-width:860px)"
+                                                    srcSet={
+                                                        item.picture
+                                                            .imageUrlMedium
+                                                    }
+                                                />
+                                                <source
+                                                    media="(min-width:861px)"
+                                                    srcSet={
+                                                        item.picture
+                                                            .imageUrlLarge
+                                                    }
+                                                />
+                                                <img
+                                                    src={
+                                                        item.picture
+                                                            .baseImageUrl
+                                                    }
+                                                    alt={item.title}
+                                                />
+                                            </picture>
+                                        </figure>
+                                    ) : null}
+                                    <CardSection>
+                                        <h3>{item.title}</h3>
+                                        <time>
+                                            Duur: {item.durationInMinutes} min
+                                        </time>
+                                        <h3>{item.programTitle}</h3>
+                                    </CardSection>
+                                </StyledAnchor>
+                            </Link>
                         </li>
                     );
                 })}

@@ -22,6 +22,10 @@
             }
         },
         {
+            "src": "/(.+)/(?<articleId>[\\d]+)/+.*$",
+            "dest": "/article?articleId=$articleId"
+        },
+        {
             "src": "/(.+)/(?<articleId>[\\d]+)",
             "dest": "/?articleId=$articleId"
         },

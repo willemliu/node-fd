@@ -27,7 +27,7 @@ header {
     .ink {
         display: block;
         position: absolute;
-        background: rgba(0, 0, 0, 0.04);
+        background: rgba(0, 0, 0, 0.06);
         border-radius: 100%;
         transform: scale(0);
     }
@@ -61,6 +61,7 @@ const StyledAnchor = styled.a`
     display: inline-block;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 `;
 
 const CardSection = styled.section`
