@@ -51,7 +51,7 @@ Article.getInitialProps = async (ctx: NextPageContext) => {
     let article;
     try {
         article = await fetch(
-            `${process.env.PROXY}?url=https://acc.bnr.nl/-/${articleId}/-?cookieconsent=bypass`
+            `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc/-/${articleId}/-`
         ).then((res) => res.json());
     } catch (e) {
         console.error(e);
