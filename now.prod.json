@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "alias": ["dev.biffy.nl"],
+    "alias": ["www.biffy.nl"],
     "builds": [{ "src": "package.json", "use": "@now/next" }],
     "build": {
         "env": {

@@ -15,7 +15,7 @@ class Home extends Component<any, any> {
             `https://node-fd.willemliu.now.sh/api/home`
         ).then((res) => res.json());
         return {
-            etag: etag(`home-`),
+            etag: etag(JSON.stringify(homeModel)),
             openingTeaserProps: getTeaserPropsFromComponents([
                 {
                     model:

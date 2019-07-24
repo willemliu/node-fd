@@ -9,8 +9,11 @@
     },
     "scripts": {
         "now-build": "next build",
-        "dev": "cross-env NOW_SERVERLESS=false next",
         "build": "cross-env NOW_SERVERLESS=false next build",
+        "deploy:dev": "now --target production",
+        "deploy:preview": "now --target production -A now.preview.json",
+        "deploy:prod": "now --target production -A now.prod.json",
+        "dev": "cross-env NOW_SERVERLESS=false next",
         "lint": "eslint {pages}/**/*",
         "next": "next",
         "start": "npm run dev",

@@ -6,7 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer(
     withOffline({
-        generateEtags: false,
+        generateEtags: process.env.PREVIEW ? true : false,
         target:
             process.env.NOW_SERVERLESS === 'false' ? 'server' : 'serverless',
         pageExtensions: ['jsx', 'js', 'ts', 'tsx'],
@@ -34,6 +34,7 @@ module.exports = withBundleAnalyzer(
         env: {
             BASIC_AUTH: process.env.BASIC_AUTH,
             PROXY: process.env.PROXY,
+            PREVIEW: process.env.PREVIEW,
         },
         webpack: (config) => {
             // this will output your push listener file to .next folder

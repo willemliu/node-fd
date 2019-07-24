@@ -1,16 +1,18 @@
 {
     "version": 2,
-    "alias": ["dev.biffy.nl"],
+    "alias": ["preview.biffy.nl"],
     "builds": [{ "src": "package.json", "use": "@now/next" }],
     "build": {
         "env": {
             "BASIC_AUTH": "@dev-bnr-basic-auth",
-            "PROXY": "@dev-proxy"
+            "PROXY": "@dev-proxy",
+            "PREVIEW": "true"
         }
     },
     "env": {
         "BASIC_AUTH": "@dev-bnr-basic-auth",
-        "PROXY": "@dev-proxy"
+        "PROXY": "@dev-proxy",
+        "PREVIEW": "true"
     },
     "routes": [
         {
