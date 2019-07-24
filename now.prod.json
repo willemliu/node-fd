@@ -22,6 +22,10 @@
             }
         },
         {
+            "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>[\\d]+)/(?<title>.+)$",
+            "dest": "/article?articleId=$articleId&section=$section&subSection=$subSection"
+        },
+        {
             "src": "/(.+)/(?<articleId>[\\d]+)",
             "dest": "/article?articleId=$articleId"
         },

@@ -63,4 +63,24 @@ const CardSection = styled.section`
     }
 `;
 
-export { BnrPageStyle, StyledH2, StyledAnchor, CardSection };
+const StyledArticle = styled.article`
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 0.2px rgba(0, 0, 0, 0.1);
+
+    h1,
+    .article-body,
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+    img {
+        max-width: 100%;
+    }
+`;
+
+export { BnrPageStyle, StyledH2, StyledAnchor, CardSection, StyledArticle };

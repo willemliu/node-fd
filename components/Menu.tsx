@@ -4,16 +4,17 @@ import styled from 'styled-components';
 export default () => {
     return (
         <StyledHeader>
-            <Link href="/" as="/">
+            <img src="/static/logo65x104.png" alt="BNR Nieuwsradio" />
+            <Link href="/" as="/" prefetch={true}>
                 <a>Home</a>
             </Link>
-            <Link href="/beurs" as="/beurs">
+            <Link href="/beurs" as="/beurs" prefetch={true}>
                 <a>Beurs</a>
             </Link>
-            <Link href="/bnr" as="/bnr">
+            <Link href="/bnr" as="/bnr" prefetch={true}>
                 <a>BNR</a>
             </Link>
-            <Link href="/test" as="/test">
+            <Link href="/test" as="/test" prefetch={true}>
                 <a>Test</a>
             </Link>
         </StyledHeader>
@@ -28,6 +29,11 @@ const StyledHeader = styled.header`
     background-color: black;
     display: flex;
     align-items: center;
+    img {
+        padding: 0.5rem 1rem;
+        height: 100%;
+    }
+
     a {
         font-family: Arial, Helvetica, sans-serif;
         color: white;

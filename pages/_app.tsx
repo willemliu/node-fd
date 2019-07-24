@@ -1,8 +1,14 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import { GlobalStyle } from '../styles/Global';
+import Router from 'next/router';
+import Loader from '../components/Loader';
 
 export default class PersistentApp extends App {
+    state: any = {
+        loading: false,
+    };
+
     static async getInitialProps({ Component, ctx }: any) {
         let pageProps: any = {};
         if (Component.getInitialProps) {
@@ -15,12 +21,22 @@ export default class PersistentApp extends App {
         return { pageProps };
     }
 
+    componentDidMount() {
+        Router.events.on('routeChangeStart', () => {
+            this.setState({ loading: true });
+        });
+        Router.events.on('routeChangeComplete', () => {
+            this.setState({ loading: false });
+        });
+    }
+
     render() {
         const { Component, pageProps } = this.props;
 
         return (
             <Container>
                 <GlobalStyle />
+                {this.state.loading ? <Loader /> : ''}
                 <Component {...pageProps} />
             </Container>
         );

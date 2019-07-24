@@ -24,11 +24,15 @@
             }
         },
         {
-            "src": "/(.+)/(?<articleId>[\\d]+)",
+            "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>[\\d]+)/(?<title>.+)$",
+            "dest": "/article?articleId=$articleId&section=$section&subSection=$subSection"
+        },
+        {
+            "src": "/(?<section>[.+])/(?<articleId>[\\d]+)",
             "dest": "/article?articleId=$articleId"
         },
         {
-            "src": "/(.+)/(?<articleId>[\\d]+)/+.*$",
+            "src": "/(<section>[.+])/(?<articleId>[\\d]+)/+.*$",
             "dest": "/article?articleId=$articleId"
         }
     ],
