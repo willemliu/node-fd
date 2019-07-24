@@ -22,16 +22,12 @@
             }
         },
         {
-            "src": "/(.+)/(?<articleId>[\\d]+)/+.*$",
+            "src": "/(.+)/(?<articleId>[\\d]+)",
             "dest": "/article?articleId=$articleId"
         },
         {
-            "src": "/(.+)/(?<articleId>[\\d]+)",
-            "dest": "/?articleId=$articleId"
-        },
-        {
             "src": "/(.+)/(?<articleId>[\\d]+)/+.*$",
-            "dest": "/?articleId=$articleId"
+            "dest": "/article?articleId=$articleId"
         }
     ],
     "regions": ["dub1"]
