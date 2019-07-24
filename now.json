@@ -6,13 +6,13 @@
         "env": {
             "BASIC_AUTH": "@dev-bnr-basic-auth",
             "ENVIRONMENT": "DEV",
-            "PROXY": "@dev-proxy"
+            "PROXY": "@bnr-dev-proxy"
         }
     },
     "env": {
         "BASIC_AUTH": "@dev-bnr-basic-auth",
         "ENVIRONMENT": "DEV",
-        "PROXY": "@dev-proxy"
+        "PROXY": "@bnr-dev-proxy"
     },
     "routes": [
         {

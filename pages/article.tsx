@@ -50,9 +50,9 @@ Article.getInitialProps = async (ctx: NextPageContext) => {
     const { articleId } = ctx.query;
     let article;
     try {
-        article = await fetch(
-            `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc/-/${articleId}/-`
-        ).then((res) => res.json());
+        article = await fetch(`${process.env.PROXY}/-/${articleId}/-`).then(
+            (res) => res.json()
+        );
     } catch (e) {
         console.error(e);
     }
