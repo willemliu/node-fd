@@ -67,13 +67,13 @@ function BNR(props: any) {
 BNR.getInitialProps = async () => {
     let home = [];
     try {
-        home = await fetch(
-            `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`
-        ).then((res) => res.json());
-
         // home = await fetch(
-        //     `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc`
+        //     `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`
         // ).then((res) => res.json());
+
+        home = await fetch(
+            `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc`
+        ).then((res) => res.json());
     } catch (e) {
         console.error(e);
     }
