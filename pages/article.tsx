@@ -1,8 +1,11 @@
 import { PageStyle } from '../styles/Page';
 import { BnrPageStyle } from '../styles/Bnr';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export default () => {
+    const router = useRouter();
+    const { articleId } = router.query;
     return (
         <PageStyle>
             <BnrPageStyle />
@@ -12,7 +15,7 @@ export default () => {
                 </title>
             </Head>
             <div className="body">
-                <main>Article</main>
+                <main>Article {articleId}</main>
                 <aside></aside>
             </div>
         </PageStyle>

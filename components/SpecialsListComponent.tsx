@@ -16,7 +16,10 @@ export default (props: Props) => {
                 {props.items.map((item: any) => {
                     return (
                         <li key={item.id} className="ripple" onClick={ripple}>
-                            <Link href={item.publicationUrl}>
+                            <Link
+                                href={`/article?articleId=${item.id}`}
+                                as={item.publicationUrl}
+                            >
                                 <StyledAnchor>
                                     {item.picture ? (
                                         <figure>
