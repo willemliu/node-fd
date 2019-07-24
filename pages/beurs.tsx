@@ -22,8 +22,10 @@ class Beurs extends Component<any, any> {
             <PageStyle>
                 <Head>
                     <title>
-                        {process.env.PREVIEW ? 'PREVIEW ' : null}Beurs | Het
-                        Financieele Dagblad
+                        {process.env.ENVIRONMENT
+                            ? `${process.env.ENVIRONMENT} `
+                            : null}
+                        Beurs | Het Financieele Dagblad
                     </title>
                 </Head>
                 <Menu />

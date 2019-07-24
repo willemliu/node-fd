@@ -7,7 +7,12 @@ export default function Test() {
     return (
         <PageStyle>
             <Head>
-                <title>{process.env.PREVIEW ? 'PREVIEW ' : null} Test</title>
+                <title>
+                    {process.env.ENVIRONMENT
+                        ? `${process.env.ENVIRONMENT} `
+                        : null}
+                    Test
+                </title>
             </Head>
             <Menu />
             <div className="testtest">Testing123</div>

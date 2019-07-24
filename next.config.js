@@ -33,6 +33,7 @@ module.exports = withBundleAnalyzer(
         },
         env: {
             BASIC_AUTH: process.env.BASIC_AUTH,
+            ENVIRONMENT: process.env.ENVIRONMENT,
             PROXY: process.env.PROXY,
             PREVIEW: process.env.PREVIEW,
         },

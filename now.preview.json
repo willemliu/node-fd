@@ -5,12 +5,14 @@
     "build": {
         "env": {
             "BASIC_AUTH": "@dev-bnr-basic-auth",
+            "ENVIRONMENT": "PREVIEW",
             "PROXY": "@dev-proxy",
             "PREVIEW": "true"
         }
     },
     "env": {
         "BASIC_AUTH": "@dev-bnr-basic-auth",
+        "ENVIRONMENT": "PREVIEW",
         "PROXY": "@dev-proxy",
         "PREVIEW": "true"
     },

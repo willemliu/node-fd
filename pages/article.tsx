@@ -11,7 +11,10 @@ export default () => {
             <BnrPageStyle />
             <Head>
                 <title>
-                    {process.env.PREVIEW ? 'PREVIEW ' : null}| BNR Nieuwsradio
+                    {process.env.ENVIRONMENT
+                        ? `${process.env.ENVIRONMENT} `
+                        : null}
+                    | BNR Nieuwsradio
                 </title>
             </Head>
             <div className="body">

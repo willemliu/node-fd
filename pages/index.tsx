@@ -44,8 +44,10 @@ class Home extends Component<any, any> {
             <PageStyle>
                 <Head>
                     <title>
-                        {process.env.PREVIEW ? 'PREVIEW ' : null}Home | Het
-                        Financieele Dagblad
+                        {process.env.ENVIRONMENT
+                            ? `${process.env.ENVIRONMENT} `
+                            : null}
+                        Home | Het Financieele Dagblad
                     </title>
                 </Head>
                 <Menu />

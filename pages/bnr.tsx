@@ -17,8 +17,10 @@ function BNR(props: any) {
             <BnrPageStyle />
             <Head>
                 <title>
-                    {process.env.PREVIEW ? 'PREVIEW ' : null}Home | BNR
-                    Nieuwsradio
+                    {process.env.ENVIRONMENT
+                        ? `${process.env.ENVIRONMENT} `
+                        : null}
+                    Home | BNR Nieuwsradio
                 </title>
             </Head>
             <Menu />
