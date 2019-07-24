@@ -16,7 +16,10 @@ function BNR(props: any) {
         <PageStyle>
             <BnrPageStyle />
             <Head>
-                <title>Home | BNR Nieuwsradio</title>
+                <title>
+                    {process.env.PREVIEW ? 'PREVIEW ' : null}Home | BNR
+                    Nieuwsradio
+                </title>
             </Head>
             <Menu />
             <div className="body">

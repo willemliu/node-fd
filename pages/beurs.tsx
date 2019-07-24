@@ -21,7 +21,10 @@ class Beurs extends Component<any, any> {
         return (
             <PageStyle>
                 <Head>
-                    <title>Beurs | Het Financieele Dagblad</title>
+                    <title>
+                        {process.env.PREVIEW ? 'PREVIEW ' : null}Beurs | Het
+                        Financieele Dagblad
+                    </title>
                 </Head>
                 <Menu />
                 <div className="body">

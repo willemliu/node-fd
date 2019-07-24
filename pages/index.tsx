@@ -43,7 +43,10 @@ class Home extends Component<any, any> {
         return (
             <PageStyle>
                 <Head>
-                    <title>Home | Het Financieele Dagblad</title>
+                    <title>
+                        {process.env.PREVIEW ? 'PREVIEW ' : null}Home | Het
+                        Financieele Dagblad
+                    </title>
                 </Head>
                 <Menu />
                 <div className="body">
