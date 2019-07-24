@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import styled from 'styled-components';
 
 export default () => {
     return (
-        <header>
+        <StyledHeader>
             <Link href="/" as="/">
                 <a>Home</a>
             </Link>
@@ -15,6 +16,20 @@ export default () => {
             <Link href="/test" as="/test">
                 <a>Test</a>
             </Link>
-        </header>
+        </StyledHeader>
     );
 };
+
+const StyledHeader = styled.header`
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    height: 60px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    a {
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+    }
+`;

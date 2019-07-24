@@ -62,13 +62,16 @@ function BNR(props: any) {
 BNR.getInitialProps = async () => {
     let home = [];
     try {
-        home = await fetch(`https://acc.bnr.nl/?cookieconsent=bypass`, {
-            headers: {
-                Authorization:
-                    'Basic ' + encode(process.env.BASIC_AUTH as string),
-                'x-fdmg-json': 'true',
-            },
-        }).then((res) => res.json());
+        home = await fetch(
+            `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`,
+            {
+                headers: {
+                    Authorization:
+                        'Basic ' + encode(process.env.BASIC_AUTH as string),
+                    'x-fdmg-json': 'true',
+                },
+            }
+        ).then((res) => res.json());
         // home = await fetch(
         //     `https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/acc`
         // ).then((res) => res.json());
