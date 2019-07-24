@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { StyledH2, StyledAnchor, CardSection } from '../styles/Bnr';
+import { ripple } from '../utils/ripple';
 
 export interface Props {
     title: string;
@@ -13,7 +14,7 @@ export default (props: Props) => {
             <ul>
                 {props.items.map((item: any) => {
                     return (
-                        <li key={item.id}>
+                        <li key={item.id} className="ripple" onClick={ripple}>
                             <StyledAnchor
                                 href={`https://dev.bnr.nl${item.publicationUrl}`}
                             >
