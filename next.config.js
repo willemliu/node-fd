@@ -17,7 +17,7 @@ module.exports = withBundleAnalyzer(
                     urlPattern: /^https?.*\.png|\.ico|\.jpg|\.gif\??.*$/,
                     handler: 'CacheFirst',
                     options: {
-                        cacheName: 'a-images',
+                        cacheName: 'images',
                         cacheableResponse: {
                             statuses: [0, 200],
                         },
@@ -31,7 +31,7 @@ module.exports = withBundleAnalyzer(
                     urlPattern: /^https?.*\.[a-zA-Z0-9]*\??.*$/,
                     handler: 'NetworkFirst',
                     options: {
-                        cacheName: 'b-https-calls',
+                        cacheName: 'https-calls',
                         networkTimeoutSeconds: 15,
                         expiration: {
                             maxEntries: 250,
