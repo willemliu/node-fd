@@ -59,6 +59,77 @@ const StyledArticle = styled.article`
     img {
         max-width: 100%;
     }
+
+    .inline-content {
+        text-decoration: none;
+        &.right {
+            float: right;
+            width: 50%;
+            box-sizing: border-box;
+            margin: 1rem 0 1rem 1rem;
+        }
+        &.block {
+            display: block;
+            clear: both;
+            margin: 1rem 0;
+        }
+        &.related-link {
+            padding: 0.5rem;
+            background-color: #ffd200;
+            border-radius: 3px;
+            font-family: Arial, Helvetica, sans-serif;
+            p {
+                text-transform: uppercase;
+                color: black;
+                font-weight: bold;
+                font-size: 0.8rem;
+                margin: 0;
+                line-height: 1.5rem;
+            }
+            h2 {
+                color: #5f5f5f;
+                font-size: 0.8rem;
+                margin: 0;
+                line-height: 1.5rem;
+            }
+        }
+        &.image {
+            margin: 1rem 0;
+            figure {
+                margin: 0;
+            }
+        }
+    }
+
+    .article-audio-button {
+        display: flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.04);
+        padding: 1rem;
+    }
+    .play-button {
+        margin-right: 0.5rem;
+        line-height: 0;
+        .icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            border: 4px solid black;
+            border-radius: 16px;
+            background-color: #ffd200;
+        }
+        .icon .icon-play {
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid black;
+        }
+    }
 `;
 
 export { BnrPageStyle, StyledH2, StyledAnchor, CardSection, StyledArticle };

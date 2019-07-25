@@ -17,7 +17,11 @@ export default (props: Props) => {
                     return (
                         <li key={item.id} className="ripple" onClick={ripple}>
                             <Link
-                                href={`/article?articleId=${item.id}`}
+                                href={
+                                    item.brandSponsor
+                                        ? `/branded?articleId=${item.id}`
+                                        : `/article?articleId=${item.id}`
+                                }
                                 as={item.publicationUrl}
                                 prefetch={true}
                             >
