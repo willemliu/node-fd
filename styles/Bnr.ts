@@ -47,6 +47,10 @@ const StyledArticle = styled.article`
     padding: 1rem;
     box-shadow: 0 2px 0.2px rgba(0, 0, 0, 0.1);
 
+    .article-body {
+        display: inline-block;
+    }
+
     h1,
     .article-body,
     p {
