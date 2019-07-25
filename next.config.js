@@ -14,11 +14,20 @@ module.exports = withBundleAnalyzer(
             swDest: 'static/service-worker.js',
             runtimeCaching: [
                 {
-                    urlPattern: /.png|.ico|.jpg|.gif$/,
+                    urlPattern: /.*\.png|\.ico|\.jpg|\.gif\??.*$/,
                     handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'images',
+                        cacheableResponse: {
+                            statuses: [0, 200],
+                        },
+                        expiration: {
+                            maxEntries: 150,
+                        },
+                    },
                 },
                 {
-                    urlPattern: /^https?.*\.[a-zA-Z0-9]*$/,
+                    urlPattern: /^https?.*\.[a-zA-Z0-9]*\??.*$/,
                     handler: 'NetworkFirst',
                     options: {
                         cacheName: 'https-calls',
