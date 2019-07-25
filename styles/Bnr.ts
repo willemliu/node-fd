@@ -8,6 +8,10 @@ html {
 .body {
     margin: .5rem;
 }
+
+a {
+    color: #0075b7;
+}
 `;
 
 const StyledH2 = styled.h2`
