@@ -19,6 +19,7 @@ export default (props: Props) => {
                             <Link
                                 href={`/article?articleId=${item.id}`}
                                 as={item.publicationUrl}
+                                prefetch={true}
                             >
                                 <StyledAnchor>
                                     {item.picture ? (

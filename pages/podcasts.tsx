@@ -4,8 +4,7 @@ import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
-import TopPodcastListComponent from '../components/TopPodcastListComponent';
-import { encode } from 'base-64';
+import PodcastPageListComponent from '../components/PodcastPageListComponent';
 
 interface Podcasts {
     programListModel: {
@@ -41,13 +40,13 @@ function Podcasts(props: Props) {
             <Menu />
             <div className="body">
                 <main>
-                    <TopPodcastListComponent
+                    <PodcastPageListComponent
                         title="Alle podcasts"
                         items={props.podcasts.programListModel.teasers}
                     />
                 </main>
                 <aside>
-                    <TopPodcastListComponent
+                    <PodcastPageListComponent
                         title="Populairste podcasts"
                         items={
                             props.podcasts.playerLauncherModel
@@ -64,10 +63,6 @@ function Podcasts(props: Props) {
 Podcasts.getInitialProps = async (): Promise<Props> => {
     let podcasts: Podcasts;
     try {
-        // home = await fetch(
-        //     `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`
-        // ).then((res) => res.json());
-
         podcasts = await fetch(`${process.env.PROXY}/podcasts`).then((res) => {
             if (res.ok) {
                 return res.json();

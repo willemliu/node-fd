@@ -6,7 +6,7 @@ import { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 
-interface Article {
+interface Branded {
     articleview: {
         article: {
             title: string;
@@ -16,10 +16,10 @@ interface Article {
     };
 }
 interface Props {
-    article: Article;
+    article: Branded;
 }
 
-function Article(props: Props) {
+function Branded(props: Props) {
     const router = useRouter();
     const { articleId, section, subSection, title } = router.query;
     return (
@@ -30,7 +30,7 @@ function Article(props: Props) {
                     {process.env.ENVIRONMENT
                         ? `${process.env.ENVIRONMENT} `
                         : null}
-                    {props.article.articleview.article.title} | BNR Nieuwsradio
+                    | BNR Nieuwsradio
                 </title>
             </Head>
             <Menu />
@@ -59,19 +59,19 @@ function Article(props: Props) {
     );
 }
 
-Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
+Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     const { articleId } = ctx.query;
-    let article: Article;
+    let article: Branded;
     try {
-        article = await fetch(`${process.env.PROXY}/-/${articleId}/-`).then(
-            (res) => {
-                if (res.ok) {
-                    return res.json();
-                } else {
-                    throw new Error(`${res.status}`);
-                }
+        article = await fetch(
+            `${process.env.PROXY}/brandstories/-/${articleId}/-`
+        ).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(`${res.status}`);
             }
-        );
+        });
     } catch (e) {
         console.error(e);
         article = {
@@ -87,4 +87,4 @@ Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     return { article };
 };
 
-export default Article;
+export default Branded;

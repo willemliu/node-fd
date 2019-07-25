@@ -17,7 +17,7 @@ export default (props: Props) => {
                     return (
                         <li key={item.id} className="ripple" onClick={ripple}>
                             <Link
-                                href={`/article?articleId=${item.id}`}
+                                href={`/podcast?podcastUrl=${item.publicationUrl}`}
                                 as={item.publicationUrl}
                                 prefetch={true}
                             >
@@ -74,34 +74,34 @@ export default (props: Props) => {
 };
 
 const StyledList = styled.section`
+    flex: 1 1 auto;
     ul {
         list-style: none;
         padding: 0;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        flex-direction: column;
     }
     figure {
+        float: left;
         margin: 0;
         img {
-            width: 100%;
+            width: 96px;
         }
     }
     li {
         position: relative;
-        flex: 0 1 calc(50% - 0.25rem);
-        @media only screen and (min-width: 860px) {
-            flex: 0 1 calc(25% - 0.25rem);
-        }
         padding: 0;
         margin: 0 0 0.5rem 0;
         overflow: hidden;
-        box-shadow: 0 2px 0.2px rgba(255, 210, 0, 1);
+        box-sizing: content-box;
+        box-shadow: 0 2px 0.2px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         background-color: white;
         section {
             padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
     }
 `;

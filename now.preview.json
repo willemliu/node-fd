@@ -26,6 +26,10 @@
             }
         },
         {
+            "src": "/podcast/(?<podcast>.+)$",
+            "dest": "/podcast?podcast=$podcast"
+        },
+        {
             "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>[\\d]+)/(?<title>.+)$",
             "dest": "/article?articleId=$articleId&section=$section&subSection=$subSection"
         },
