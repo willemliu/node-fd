@@ -18,14 +18,15 @@ const PageStyle = styled.div`
 
     main {
         flex: 1 1 auto;
-        margin-right: 1rem;
+        @media only screen and (min-width: 861px) {
+            margin-right: 1rem;
+        }
     }
     aside {
         flex: 1 0 300px;
     }
 
     .ripple {
-        position: relative;
         overflow: hidden;
         .ink {
             display: block;

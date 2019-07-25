@@ -98,6 +98,7 @@ const StyledList = styled.section`
         }
     }
     li {
+        position: relative;
         flex: 1 1 auto;
         @media only screen and (min-width: 641px) {
             flex: 0 1 calc(33% - (0.5rem / 3));
