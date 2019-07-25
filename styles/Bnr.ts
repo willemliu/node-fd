@@ -57,6 +57,11 @@ const StyledArticle = styled.article`
         font-family: Arial, Helvetica, sans-serif;
     }
 
+    p {
+        color: #5f5f5f;
+        line-height: 1.5;
+    }
+
     h1 {
         font-size: 2rem;
     }
