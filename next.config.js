@@ -22,7 +22,8 @@ module.exports = withBundleAnalyzer(
                             statuses: [0, 200],
                         },
                         expiration: {
-                            maxEntries: 150,
+                            maxEntries: 250,
+                            maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
                         },
                     },
                 },
@@ -33,7 +34,7 @@ module.exports = withBundleAnalyzer(
                         cacheName: 'https-calls',
                         networkTimeoutSeconds: 15,
                         expiration: {
-                            maxEntries: 150,
+                            maxEntries: 250,
                             maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
                         },
                         cacheableResponse: {
