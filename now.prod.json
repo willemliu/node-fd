@@ -22,19 +22,23 @@
             }
         },
         {
-            "src": "/podcast/(?<podcast>.+)$",
-            "dest": "/podcast?podcast=$podcast"
+            "src": "/brandstories/(?<subSection>.+)/(?<articleId>[\\d]+)/(?<title>.+)$",
+            "dest": "/branded?articleId=$articleId&section=brandedstories&subSection=$subSection"
         },
         {
             "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>[\\d]+)/(?<title>.+)$",
             "dest": "/article?articleId=$articleId&section=$section&subSection=$subSection"
         },
         {
-            "src": "/(.+)/(?<articleId>[\\d]+)",
+            "src": "/podcast/(?<podcast>.+)$",
+            "dest": "/podcast?podcastUrl=/podcast/$podcast&podcast=/$podcast"
+        },
+        {
+            "src": "/(?<section>[.+])/(?<articleId>[\\d]+)",
             "dest": "/article?articleId=$articleId"
         },
         {
-            "src": "/(.+)/(?<articleId>[\\d]+)/+.*$",
+            "src": "/(<section>[.+])/(?<articleId>[\\d]+)/+.*$",
             "dest": "/article?articleId=$articleId"
         }
     ],
