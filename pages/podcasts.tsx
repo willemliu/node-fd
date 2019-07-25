@@ -4,7 +4,7 @@ import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
-import PodcastPageListComponent from '../components/PodcastPageListComponent';
+import PodcastPageListComponent from '../components/PodcastsPageListComponent';
 
 interface Podcasts {
     programListModel: {
