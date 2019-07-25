@@ -62,6 +62,10 @@ const StyledArticle = styled.article`
         line-height: 1.5;
     }
 
+    > p {
+        font-weight: bold;
+    }
+
     h1 {
         font-size: 2rem;
     }
