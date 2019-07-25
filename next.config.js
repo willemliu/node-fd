@@ -14,7 +14,7 @@ module.exports = withBundleAnalyzer(
             swDest: 'static/service-worker.js',
             runtimeCaching: [
                 {
-                    urlPattern: /.*\.png|\.ico|\.jpg|\.gif\??.*$/,
+                    urlPattern: /^https?.*\.png|\.ico|\.jpg|\.gif\??.*$/,
                     handler: 'CacheFirst',
                     options: {
                         cacheName: 'a-images',
