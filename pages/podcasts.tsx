@@ -4,7 +4,8 @@ import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
-import PodcastPageListComponent from '../components/PodcastsPageListComponent';
+import PodcastsPageListComponent from '../components/PodcastsPageListComponent';
+import TopPodcastListComponent from '../components/TopPodcastListComponent';
 
 interface Podcasts {
     programListModel: {
@@ -40,13 +41,13 @@ function Podcasts(props: Props) {
             <Menu />
             <div className="body">
                 <main>
-                    <PodcastPageListComponent
+                    <PodcastsPageListComponent
                         title="Alle podcasts"
                         items={props.podcasts.programListModel.teasers}
                     />
                 </main>
                 <aside>
-                    <PodcastPageListComponent
+                    <TopPodcastListComponent
                         title="Populairste podcasts"
                         items={
                             props.podcasts.playerLauncherModel
