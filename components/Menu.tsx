@@ -15,6 +15,9 @@ export default () => {
             <Link href="/bnr" as="/bnr" prefetch={true}>
                 <a>BNR</a>
             </Link>
+            <Link href="/podcasts" as="/podcasts" prefetch={true}>
+                <a>Podcasts</a>
+            </Link>
             <Link href="/test" as="/test" prefetch={true}>
                 <a>Test</a>
             </Link>

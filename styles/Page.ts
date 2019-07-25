@@ -23,7 +23,7 @@ const PageStyle = styled.div`
         }
     }
     aside {
-        flex: 1 0 300px;
+        flex: 0 0 300px;
     }
 
     .ripple {
