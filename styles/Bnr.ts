@@ -102,6 +102,10 @@ const StyledArticle = styled.article`
             figure {
                 margin: 0;
             }
+            figcaption {
+                font-size: 0.7rem;
+                color: #5f5f5f;
+            }
         }
     }
 
