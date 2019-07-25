@@ -49,6 +49,7 @@ const StyledArticle = styled.article`
 
     .article-body {
         display: inline-block;
+        width: 100%;
     }
 
     h1,
@@ -60,6 +61,9 @@ const StyledArticle = styled.article`
     p {
         color: #5f5f5f;
         line-height: 1.5;
+        a {
+            text-decoration: none;
+        }
     }
 
     > p {
