@@ -7,19 +7,19 @@ export default () => {
         <StyledHeader className="ripple" onClick={ripple}>
             <img src="/static/logo65x104.png" alt="BNR Nieuwsradio" />
             <Link href="/" as="/" prefetch={true}>
-                <a>Home</a>
+                <a href="/">Home</a>
             </Link>
             <Link href="/beurs" as="/beurs" prefetch={true}>
-                <a>Beurs</a>
+                <a href="/beurs">Beurs</a>
             </Link>
             <Link href="/bnr" as="/bnr" prefetch={true}>
-                <a>BNR</a>
+                <a href="/bnr">BNR</a>
             </Link>
             <Link href="/podcasts" as="/podcasts" prefetch={true}>
-                <a>Podcasts</a>
+                <a href="/podcasts">Podcasts</a>
             </Link>
             <Link href="/test" as="/test" prefetch={true}>
-                <a>Test</a>
+                <a href="/test">Test</a>
             </Link>
         </StyledHeader>
     );

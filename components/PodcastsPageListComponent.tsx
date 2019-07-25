@@ -21,7 +21,7 @@ export default (props: Props) => {
                                 as={item.publicationUrl}
                                 prefetch={true}
                             >
-                                <StyledAnchor>
+                                <StyledAnchor href={item.publicationUrl}>
                                     {item.picture ? (
                                         <figure>
                                             <picture>
