@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledH2, StyledAnchor, CardSection } from '../styles/Bnr';
+import { StyledH2 } from '../styles/Bnr';
 import { ripple } from '../utils/ripple';
 import Link from 'next/link';
 import CardAnchor from './CardAnchor';
