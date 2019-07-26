@@ -21,6 +21,7 @@ export default (props: Props) => {
                                 href={`/podcast?podcastUrl=${item.publicationUrl}`}
                                 as={item.publicationUrl}
                                 prefetch={true}
+                                passHref={true}
                             >
                                 <CardAnchor item={item} />
                             </Link>

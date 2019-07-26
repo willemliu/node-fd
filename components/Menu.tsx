@@ -7,28 +7,33 @@ export default () => {
         <StyledHeader>
             <img src="/static/logo65x104.png" alt="BNR Nieuwsradio" />
             <LinksContainer>
-                <Link href="/" as="/" prefetch={true}>
-                    <a href="/" className="ripple" onClick={ripple}>
+                <Link href="/" as="/" prefetch={true} passHref={true}>
+                    <a className="ripple" onClick={ripple}>
                         <span>Home</span>
                     </a>
                 </Link>
-                <Link href="/beurs" as="/beurs" prefetch={true}>
-                    <a href="/beurs" className="ripple" onClick={ripple}>
+                <Link href="/beurs" as="/beurs" prefetch={true} passHref={true}>
+                    <a className="ripple" onClick={ripple}>
                         <span>Beurs</span>
                     </a>
                 </Link>
-                <Link href="/bnr" as="/bnr" prefetch={true}>
-                    <a href="/bnr" className="ripple" onClick={ripple}>
+                <Link href="/bnr" as="/bnr" prefetch={true} passHref={true}>
+                    <a className="ripple" onClick={ripple}>
                         <span>BNR</span>
                     </a>
                 </Link>
-                <Link href="/podcasts" as="/podcasts" prefetch={true}>
-                    <a href="/podcasts" className="ripple" onClick={ripple}>
+                <Link
+                    href="/podcasts"
+                    as="/podcasts"
+                    prefetch={true}
+                    passHref={true}
+                >
+                    <a className="ripple" onClick={ripple}>
                         <span>Podcasts</span>
                     </a>
                 </Link>
-                <Link href="/test" as="/test" prefetch={true}>
-                    <a href="/test" className="ripple" onClick={ripple}>
+                <Link href="/test" as="/test" prefetch={true} passHref={true}>
+                    <a className="ripple" onClick={ripple}>
                         <span>Test</span>
                     </a>
                 </Link>

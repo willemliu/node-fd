@@ -25,6 +25,7 @@ export default (props: Props) => {
                                 }
                                 as={item.publicationUrl}
                                 prefetch={true}
+                                passHref={true}
                             >
                                 <CardAnchor item={item} />
                             </Link>

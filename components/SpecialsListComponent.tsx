@@ -24,6 +24,7 @@ export default (props: Props) => {
                                         : `/article?articleId=${item.id}`
                                 }
                                 as={item.publicationUrl}
+                                passHref={true}
                                 prefetch={true}
                             >
                                 <CardAnchor item={item} />
