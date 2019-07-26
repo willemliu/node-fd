@@ -86,17 +86,6 @@ const StyledArticle = styled.article`
 
     .inline-content {
         text-decoration: none;
-        &.right {
-            float: right;
-            width: 50%;
-            box-sizing: border-box;
-            margin: 1rem 0 1rem 1rem;
-        }
-        &.block {
-            display: block;
-            clear: both;
-            margin: 1rem 0;
-        }
         &.related-link {
             padding: 0.5rem;
             background-color: #ffd200;
@@ -126,6 +115,17 @@ const StyledArticle = styled.article`
                 font-size: 0.7rem;
                 color: #5f5f5f;
             }
+        }
+        &.right {
+            float: right;
+            width: 50%;
+            box-sizing: border-box;
+            margin: 1rem 0 1rem 1rem;
+        }
+        &.block {
+            display: block;
+            clear: both;
+            margin: 1rem 0;
         }
     }
 
