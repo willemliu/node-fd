@@ -66,7 +66,7 @@ const StyledHeader = styled.header`
         font-family: Arial, Helvetica, sans-serif;
         color: white;
         display: flex;
-        flex: 1 1 auto;
+        flex: 0 1 auto;
         flex-direction: row;
         height: 100%;
         align-items: center;
