@@ -42,6 +42,10 @@
         {
             "src": "/(?<section>.+)/(?<articleId>\\d+)/.*$",
             "dest": "/article?articleId=$articleId&section=$section"
+        },
+        {
+            "src": "/img/(?<proxy>.*)$",
+            "dest": "/static/img/$proxy"
         }
     ],
     "regions": ["dub1"]
