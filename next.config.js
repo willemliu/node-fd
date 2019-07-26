@@ -17,7 +17,7 @@ module.exports = withBundleAnalyzer(
                     urlPattern: /^https?.*\.png|\.ico|\.jpg|\.gif\??.*$/,
                     handler: 'CacheFirst',
                     options: {
-                        cacheName: 'images',
+                        cacheName: 'static-files',
                         cacheableResponse: {
                             statuses: [0, 200],
                         },
@@ -27,21 +27,21 @@ module.exports = withBundleAnalyzer(
                         },
                     },
                 },
-                {
-                    urlPattern: /^https?.*\.[a-zA-Z0-9]*\??.*$/,
-                    handler: 'NetworkFirst',
-                    options: {
-                        cacheName: 'https-calls',
-                        networkTimeoutSeconds: 15,
-                        expiration: {
-                            maxEntries: 250,
-                            maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
-                        },
-                        cacheableResponse: {
-                            statuses: [0, 200],
-                        },
-                    },
-                },
+                // {
+                //     urlPattern: /^https?.*\.[a-zA-Z0-9]*\??.*$/,
+                //     handler: 'NetworkFirst',
+                //     options: {
+                //         cacheName: 'https-calls',
+                //         networkTimeoutSeconds: 15,
+                //         expiration: {
+                //             maxEntries: 250,
+                //             maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
+                //         },
+                //         cacheableResponse: {
+                //             statuses: [0, 200],
+                //         },
+                //     },
+                // },
             ],
             importScripts: ['/static/sw-push-listener.js'],
         },
