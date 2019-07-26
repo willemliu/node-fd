@@ -39,6 +39,7 @@ export default class MyDocument extends Document<any> {
                         httpEquiv="Content-Type"
                         content="text/html; charset=UTF-8"
                     />
+                    <link rel="manifest" href="/static/manifest.json" />
                 </Head>
                 <body>
                     <Main />
