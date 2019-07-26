@@ -44,6 +44,7 @@ const LinksContainer = styled.div`
     height: 100%;
     white-space: nowrap;
     overflow-x: auto;
+    background-color: inherit;
 `;
 
 const StyledHeader = styled.header`
@@ -65,11 +66,14 @@ const StyledHeader = styled.header`
         font-family: Arial, Helvetica, sans-serif;
         color: white;
         display: flex;
+        flex: 1 1 auto;
         flex-direction: row;
         height: 100%;
         align-items: center;
         padding: 0 1rem;
-        box-sizing: content-box;
-        overflow: unset;
+        box-sizing: border-box;
+        &.ripple {
+            overflow: unset;
+        }
     }
 `;
