@@ -10,7 +10,9 @@ module.exports = withBundleAnalyzer(
         target:
             process.env.NOW_SERVERLESS === 'false' ? 'server' : 'serverless',
         pageExtensions: ['jsx', 'js', 'ts', 'tsx'],
+        generateInDevMode: true,
         workboxOpts: {
+            cleanupOutdatedCaches: true,
             swDest: 'static/service-worker.js',
             runtimeCaching: [
                 {
