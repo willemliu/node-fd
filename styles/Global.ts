@@ -10,9 +10,12 @@ body {
 .fd-card {
     margin-bottom: 1rem;
 }
+`;
+
+const FdStyle = createGlobalStyle`
 ${OpeningTeaserStyle}
 ${TeaserStyle}
 ${SquareTeaserStyle}
 `;
 
-export { GlobalStyle };
+export { GlobalStyle, FdStyle };

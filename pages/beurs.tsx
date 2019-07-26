@@ -6,6 +6,7 @@ import { getTeaserPropsFromBeursComponents } from '../utils/model';
 import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import etag from 'etag';
+import { FdStyle } from '../styles/Global';
 
 class Beurs extends Component<any, any> {
     static async getInitialProps() {
@@ -20,6 +21,7 @@ class Beurs extends Component<any, any> {
     render() {
         return (
             <PageStyle>
+                <FdStyle />
                 <Head>
                     <title>
                         {process.env.ENVIRONMENT

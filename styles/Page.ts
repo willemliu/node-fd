@@ -10,12 +10,6 @@ const PageStyle = styled.div`
         }
     }
 
-    header {
-        a {
-            margin-right: 1rem;
-        }
-    }
-
     main {
         flex: 1 1 auto;
         @media only screen and (min-width: 861px) {

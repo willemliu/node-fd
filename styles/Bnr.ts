@@ -22,6 +22,9 @@ const StyledH2 = styled.h2`
     color: rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0.5rem 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 `;
 
 const StyledAnchor = styled.a`

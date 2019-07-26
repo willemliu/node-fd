@@ -24,11 +24,11 @@
             }
         },
         {
-            "src": "/brandstories/(?<subSection>.+)/(?<articleId>[\\d]+)/(?<title>.+)$",
+            "src": "/brandstories/(?<subSection>.+)/(?<articleId>\\d+)/(?<title>.+)$",
             "dest": "/branded?articleId=$articleId&section=brandedstories&subSection=$subSection"
         },
         {
-            "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>[\\d]+)/(?<title>.+)$",
+            "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>\\d+)/(?<title>.+)$",
             "dest": "/article?articleId=$articleId&section=$section&subSection=$subSection"
         },
         {
@@ -36,12 +36,12 @@
             "dest": "/podcast?podcastUrl=/podcast/$podcast&podcast=/$podcast"
         },
         {
-            "src": "/(?<section>[.+])/(?<articleId>[\\d]+)",
+            "src": "/(?<section>.+)/(?<articleId>\\d+)",
             "dest": "/article?articleId=$articleId"
         },
         {
-            "src": "/(<section>[.+])/(?<articleId>[\\d]+)/+.*$",
-            "dest": "/article?articleId=$articleId"
+            "src": "/(?<section>.+)/(?<articleId>\\d+)/.*$",
+            "dest": "/article?articleId=$articleId&section=$section"
         }
     ],
     "regions": ["dub1"]

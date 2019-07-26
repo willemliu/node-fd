@@ -8,6 +8,7 @@ import { PageStyle } from '../styles/Page';
 import { getTeaserPropsFromComponents } from '../utils/model';
 import Menu from '../components/Menu';
 import etag from 'etag';
+import { FdStyle } from '../styles/Global';
 
 class Home extends Component<any, any> {
     static async getInitialProps() {
@@ -42,6 +43,7 @@ class Home extends Component<any, any> {
     render() {
         return (
             <PageStyle>
+                <FdStyle />
                 <Head>
                     <title>
                         {process.env.ENVIRONMENT

@@ -54,6 +54,7 @@ const StyledList = styled.section`
     figure {
         @media only screen and (max-width: 640px) {
             float: left;
+            margin-right: 0.5rem;
         }
         margin: 0;
         img {
