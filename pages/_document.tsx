@@ -10,7 +10,8 @@ export default class MyDocument extends Document<any> {
         if (!process.env.PREVIEW) {
             ctx.res.setHeader(
                 'Cache-Control',
-                'max-age=0, max-stale, s-maxage=1, stale-while-revalidate=60'
+                // 'max-age=0, max-stale, s-maxage=1, stale-while-revalidate=60'
+                'max-age=0, max-stale, s-maxage=60'
             );
         }
 
