@@ -1,22 +1,26 @@
 {
-    "name": "Persistent Component POC",
-    "short_name": "Persistent Component",
+    "name": "BNR Nieuwsradio",
+    "short_name": "BNR",
     "background_color": "#FFFFFF",
     "theme_color": "#000000",
-    "description": "Persistent Component POC",
+    "description": "BNR Nieuwsradio houdt ondernemend Nederland 24 uur per dag op de hoogte van al het nieuws. Live én on demand via podcasts en SMART Radio. BNR is positief, oplossingsgericht voor ondernemers die vooruit willen. Innovaties hoor je bij BNR als eerste. Topjournalistiek, intelligente programma’s, spraakmakende presentatoren, de beste experts. BNR is hét zakelijke platform van Nederland",
     "display": "standalone",
     "start_url": "/?isPwa=true",
-    "icons": [{
-      "src": "/static/144x144.png",
-      "type": "image/png",
-      "sizes": "144x144"
-    }, {
-      "src": "/static/512x512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }, {
-      "src": "/static/192x192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    }]
+    "icons": [
+        {
+            "src": "/static/144x144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "/static/512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/static/192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ]
 }
