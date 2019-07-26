@@ -1,10 +1,9 @@
 import { CardSection, StyledAnchor } from '../styles/Bnr';
-import { PureComponent } from 'react';
 
-export default class CardAnchor extends PureComponent<any, any> {
-    render() {
-        const item = this.props.item;
-        return (
+export default function CardAnchor(props: any) {
+    const item = props.item;
+    return (
+        <>
             <StyledAnchor href={item.publicationUrl}>
                 {item.picture ? (
                     <figure>
@@ -34,6 +33,6 @@ export default class CardAnchor extends PureComponent<any, any> {
                     <h3>{item.programTitle}</h3>
                 </CardSection>
             </StyledAnchor>
-        );
-    }
+        </>
+    );
 }
