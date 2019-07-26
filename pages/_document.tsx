@@ -41,6 +41,11 @@ export default class MyDocument extends Document<any> {
                         content="text/html; charset=UTF-8"
                     />
                     <link rel="manifest" href="/static/manifest.json" />
+                    <link
+                        rel="shortcut icon"
+                        href="/static/favicon.ico"
+                        type="image/x-icon"
+                    />
                 </Head>
                 <body>
                     <Main />

@@ -26,11 +26,6 @@ function Podcasts(props: Props) {
         <PageStyle>
             <BnrPageStyle />
             <Head>
-                <link
-                    rel="shortcut icon"
-                    href="/static/favicon.ico"
-                    type="image/x-icon"
-                />
                 <title>
                     {process.env.ENVIRONMENT
                         ? `${process.env.ENVIRONMENT} `
