@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Teaser from '@fdmg/fd-teaser';
 import Head from 'next/head';
-import { beursModel } from '../components/beursModel';
+import { beursModel } from '../utils/beursModel';
 import { getTeaserPropsFromBeursComponents } from '../utils/model';
 import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';

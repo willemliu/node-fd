@@ -1,5 +1,5 @@
 import Cors from 'micro-cors';
-import { homeModel } from '../../components/homeModel';
+import { homeModel } from '../../utils/homeModel';
 
 // import fetch from 'node-fetch';
 
