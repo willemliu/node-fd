@@ -1,8 +1,8 @@
 {
     "name": "BNR Nieuwsradio",
     "short_name": "BNR",
-    "background_color": "#FFFFFF",
-    "theme_color": "#000000",
+    "background_color": "#ffd200",
+    "theme_color": "#ffd200",
     "description": "BNR Nieuwsradio houdt ondernemend Nederland 24 uur per dag op de hoogte van al het nieuws. Live én on demand via podcasts en SMART Radio. BNR is positief, oplossingsgericht voor ondernemers die vooruit willen. Innovaties hoor je bij BNR als eerste. Topjournalistiek, intelligente programma’s, spraakmakende presentatoren, de beste experts. BNR is hét zakelijke platform van Nederland",
     "display": "standalone",
     "start_url": "/?isPwa=true",
