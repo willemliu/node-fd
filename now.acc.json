@@ -1,0 +1,50 @@
+{
+    "version": 2,
+    "alias": ["acc.biffy.nl"],
+    "builds": [{ "src": "package.json", "use": "@now/next" }],
+    "build": {
+        "env": {
+            "BASIC_AUTH": "@dev-bnr-basic-auth",
+            "PROXY": "@bnr-acc-proxy"
+        }
+    },
+    "env": {
+        "BASIC_AUTH": "@dev-bnr-basic-auth",
+        "PROXY": "@bnr-acc-proxy"
+    },
+    "routes": [
+        {
+            "src": "^/service-worker.js$",
+            "dest": "/_next/static/service-worker.js",
+            "headers": {
+                "cache-control": "public, max-age=43200, max-age=0, immutable",
+                "Service-Worker-Allowed": "/"
+            }
+        },
+        {
+            "src": "/brandstories/(?<subSection>.+)/(?<articleId>\\d+)/(?<title>.+)$",
+            "dest": "/branded?articleId=$articleId&section=brandedstories&subSection=$subSection"
+        },
+        {
+            "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>\\d+)/(?<title>.+)$",
+            "dest": "/article?articleId=$articleId&section=$section&subSection=$subSection"
+        },
+        {
+            "src": "/podcast/(?<podcast>.+)$",
+            "dest": "/podcast?podcastUrl=/podcast/$podcast&podcast=/$podcast"
+        },
+        {
+            "src": "/(?<section>.+)/(?<articleId>\\d+)",
+            "dest": "/article?articleId=$articleId"
+        },
+        {
+            "src": "/(?<section>.+)/(?<articleId>\\d+)/.*$",
+            "dest": "/article?articleId=$articleId&section=$section"
+        },
+        {
+            "src": "/img/(?<proxy>.*)$",
+            "dest": "/static/img/$proxy"
+        }
+    ],
+    "regions": ["dub1"]
+}
