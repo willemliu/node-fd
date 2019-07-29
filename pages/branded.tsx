@@ -87,7 +87,7 @@ Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
         };
     }
     return {
-        etag: md5(`"${JSON.stringify(article)}"`),
+        etag: `"${md5(JSON.stringify(article))}"`,
         article,
     };
 };

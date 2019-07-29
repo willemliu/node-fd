@@ -100,7 +100,7 @@ Podcast.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
         };
     }
     return {
-        etag: md5(`"${JSON.stringify(podcastModel)}"`),
+        etag: `"${md5(JSON.stringify(podcastModel))}"`,
         podcast: podcastModel,
     };
 };

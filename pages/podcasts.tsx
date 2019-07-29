@@ -75,7 +75,7 @@ Podcasts.getInitialProps = async (): Promise<Props> => {
     }
 
     return {
-        etag: md5(`"${JSON.stringify(podcasts)}"`),
+        etag: `"${md5(JSON.stringify(podcasts))}"`,
         podcasts,
     };
 };

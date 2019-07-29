@@ -107,7 +107,7 @@ BNR.getInitialProps = async (): Promise<Props> => {
     }
 
     return {
-        etag: md5(`"${JSON.stringify(home)}"`),
+        etag: `"${md5(JSON.stringify(home))}"`,
         home,
         updateTimestamp: new Date().toUTCString(),
     };
