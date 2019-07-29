@@ -6,12 +6,14 @@
         "env": {
             "BASIC_AUTH": "@dev-bnr-basic-auth",
             "ENVIRONMENT": "DEV",
+            "GENERATE_ETAGS": "@bnr-dev-generate-etags",
             "PROXY": "@bnr-dev-proxy"
         }
     },
     "env": {
         "BASIC_AUTH": "@dev-bnr-basic-auth",
         "ENVIRONMENT": "DEV",
+        "GENERATE_ETAGS": "@bnr-dev-generate-etags",
         "PROXY": "@bnr-dev-proxy"
     },
     "routes": [

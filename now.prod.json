@@ -5,11 +5,13 @@
     "build": {
         "env": {
             "BASIC_AUTH": "@dev-bnr-basic-auth",
+            "GENERATE_ETAGS": "@bnr-prod-generate-etags",
             "PROXY": "@bnr-prod-proxy"
         }
     },
     "env": {
         "BASIC_AUTH": "@dev-bnr-basic-auth",
+        "GENERATE_ETAGS": "@bnr-prod-generate-etags",
         "PROXY": "@bnr-prod-proxy"
     },
     "routes": [

@@ -6,7 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer(
     withOffline({
-        generateEtags: process.env.PREVIEW ? true : false,
+        generateEtags: process.env.GENERATE_ETAGS === 'true' ? true : false,
         target:
             process.env.NOW_SERVERLESS === 'false' ? 'server' : 'serverless',
         pageExtensions: ['jsx', 'js', 'ts', 'tsx'],
@@ -50,6 +50,7 @@ module.exports = withBundleAnalyzer(
         env: {
             BASIC_AUTH: process.env.BASIC_AUTH,
             ENVIRONMENT: process.env.ENVIRONMENT,
+            GENERATE_ETAGS: process.env.GENERATE_ETAGS,
             PROXY: process.env.PROXY,
             PREVIEW: process.env.PREVIEW,
         },
