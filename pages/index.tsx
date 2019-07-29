@@ -1,76 +1,116 @@
 import fetch from 'node-fetch';
-import React, { Component } from 'react';
-import OpeningTeaser from '@fdmg/fd-opening-teaser';
-import Teaser from '@fdmg/fd-teaser';
-import SquareTeaser from '@fdmg/fd-square-teaser';
 import Head from 'next/head';
 import { PageStyle } from '../styles/Page';
-import { getTeaserPropsFromComponents } from '../utils/model';
 import Menu from '../components/Menu';
+import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
-import { FdStyle } from '../styles/Global';
+import TopNewsListComponent from '../components/TopNewsListComponent';
+import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
+import BrandedPodcastListComponent from '../components/BrandedPodcastListComponent';
+import TopPodcastListComponent from '../components/TopPodcastListComponent';
+import SpecialsListComponent from '../components/SpecialsListComponent';
+import { encode } from 'base-64';
 
-class Home extends Component<any, any> {
-    static async getInitialProps() {
-        const homeModel = await fetch(
-            `https://node-fd.willemliu.now.sh/api/home`
-        ).then((res) => res.json());
-        return {
-            etag: etag(JSON.stringify(homeModel)),
-            openingTeaserProps: getTeaserPropsFromComponents([
-                {
-                    model:
-                        homeModel.openingTeaserModel &&
-                        homeModel.openingTeaserModel.teaserModels[0]
-                            ? homeModel.openingTeaserModel.teaserModels[0]
-                            : [],
-                },
-            ]),
-            leftTeaserProps: getTeaserPropsFromComponents(
-                homeModel.homePageLayout && homeModel.homePageLayout.components
-                    ? homeModel.homePageLayout.components
-                    : []
-            ),
-            rightTeaserProps: getTeaserPropsFromComponents(
-                homeModel.homePageSideLayout &&
-                    homeModel.homePageSideLayout.components
-                    ? homeModel.homePageSideLayout.components
-                    : []
-            ),
+interface Home {
+    newsFragmentsModel: {
+        teaserFragment1: any;
+        teaserFragment2: any;
+        teaserFragment3: any;
+    };
+    homeLatestPodcastModel: { teasers: [] };
+    brandstoriesTeaserModel: { teasers: [] };
+    specialTeasersModel: { teasers: [] };
+    editorsPickModel: { teasers: [] };
+}
+
+interface Props {
+    etag?: string;
+    home: Home;
+    updateTimestamp?: string;
+}
+
+function BNR(props: Props) {
+    return (
+        <PageStyle>
+            <BnrPageStyle />
+            <Head>
+                <title>
+                    {process.env.ENVIRONMENT
+                        ? `${process.env.ENVIRONMENT} `
+                        : null}
+                    Home | BNR Nieuwsradio
+                </title>
+            </Head>
+            <Menu />
+            <div className="body">
+                <main>
+                    <TopNewsListComponent
+                        title="Top 3 nieuwsfragmenten"
+                        items={[
+                            props.home.newsFragmentsModel.teaserFragment1,
+                            props.home.newsFragmentsModel.teaserFragment2,
+                            props.home.newsFragmentsModel.teaserFragment3,
+                        ]}
+                    />
+                    <LatestPodcastListComponent
+                        title="Nieuwste podcasts"
+                        items={props.home.homeLatestPodcastModel.teasers}
+                    />
+                    <BrandedPodcastListComponent
+                        title="Brand stories"
+                        items={props.home.brandstoriesTeaserModel.teasers}
+                    />
+                    <SpecialsListComponent
+                        title="BNR specials"
+                        items={props.home.specialTeasersModel.teasers}
+                    />
+                </main>
+                <aside>
+                    <TopPodcastListComponent
+                        title="Top 5 podcasts"
+                        items={props.home.editorsPickModel.teasers}
+                    />
+                </aside>
+            </div>
+            {props.etag} {props.updateTimestamp}
+        </PageStyle>
+    );
+}
+
+BNR.getInitialProps = async (): Promise<Props> => {
+    let home: Home;
+    try {
+        // home = await fetch(
+        //     `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`
+        // ).then((res) => res.json());
+
+        home = await fetch(`${process.env.PROXY}`).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(`${res.status}`);
+            }
+        });
+    } catch (e) {
+        console.error(e);
+        home = {
+            brandstoriesTeaserModel: { teasers: [] },
+            editorsPickModel: { teasers: [] },
+            homeLatestPodcastModel: { teasers: [] },
+            newsFragmentsModel: {
+                teaserFragment1: { id: 1 },
+                teaserFragment2: { id: 2 },
+                teaserFragment3: { id: 3 },
+            },
+            specialTeasersModel: { teasers: [] },
         };
     }
 
-    render() {
-        return (
-            <PageStyle>
-                <FdStyle />
-                <Head>
-                    <title>
-                        {process.env.ENVIRONMENT
-                            ? `${process.env.ENVIRONMENT} `
-                            : null}
-                        Home | Het Financieele Dagblad
-                    </title>
-                </Head>
-                <Menu />
-                <div className="body">
-                    <main>
-                        {this.props.openingTeaserProps.map((props: any) =>
-                            props ? <OpeningTeaser {...props} /> : null
-                        )}
-                        {this.props.leftTeaserProps.map((props: any) =>
-                            props ? <Teaser {...props} /> : null
-                        )}
-                    </main>
-                    <aside>
-                        {this.props.rightTeaserProps.map((props: any) =>
-                            props ? <SquareTeaser {...props} /> : null
-                        )}
-                    </aside>
-                </div>
-            </PageStyle>
-        );
-    }
-}
+    return {
+        etag: etag(`${JSON.stringify(home)}`),
+        home,
+        updateTimestamp: new Date().toUTCString(),
+    };
+};
 
-export default Home;
+export default BNR;

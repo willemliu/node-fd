@@ -12,16 +12,6 @@ export default () => {
                         <span>Home</span>
                     </a>
                 </Link>
-                <Link href="/beurs" as="/beurs" prefetch={true} passHref={true}>
-                    <a className="ripple" onClick={ripple}>
-                        <span>Beurs</span>
-                    </a>
-                </Link>
-                <Link href="/bnr" as="/bnr" prefetch={true} passHref={true}>
-                    <a className="ripple" onClick={ripple}>
-                        <span>BNR</span>
-                    </a>
-                </Link>
                 <Link
                     href="/podcasts"
                     as="/podcasts"
@@ -30,11 +20,6 @@ export default () => {
                 >
                     <a className="ripple" onClick={ripple}>
                         <span>Podcasts</span>
-                    </a>
-                </Link>
-                <Link href="/test" as="/test" prefetch={true} passHref={true}>
-                    <a className="ripple" onClick={ripple}>
-                        <span>Test</span>
                     </a>
                 </Link>
             </LinksContainer>

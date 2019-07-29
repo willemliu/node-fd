@@ -24,6 +24,10 @@
             }
         },
         {
+            "src": "/bnr$",
+            "dest": "/"
+        },
+        {
             "src": "/brandstories/(?<subSection>.+)/(?<articleId>\\d+)/(?<title>.+)$",
             "dest": "/branded?articleId=$articleId&section=brandedstories&subSection=$subSection"
         },
