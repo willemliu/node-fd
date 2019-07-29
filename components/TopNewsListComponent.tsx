@@ -43,6 +43,7 @@ const StyledList = styled.section`
         padding: 0;
         display: flex;
         flex-direction: column;
+        max-width: 100vw; // IE11 fix
         @media only screen and (min-width: 641px) {
             flex-direction: row;
         }
@@ -67,6 +68,7 @@ const StyledList = styled.section`
         flex: 1 1 auto;
         @media only screen and (min-width: 641px) {
             flex: 0 1 calc(33% - (0.5rem / 3));
+            max-width: calc(33% - (0.5rem / 3)); // IE11 fix
         }
         padding: 0;
         margin: 0 0 0.5rem 0;

@@ -7,8 +7,11 @@ import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
 import styled from 'styled-components';
+import etag from 'etag';
+import { getIsServer } from '../utils/server';
 
 interface Props {
+    etag?: string;
     podcast: {
         podcastModel: {
             teasers: [];
@@ -98,6 +101,9 @@ Podcast.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
         };
     }
     return {
+        etag: getIsServer()
+            ? etag(`${JSON.stringify(podcastModel)}`)
+            : undefined,
         podcast: podcastModel,
     };
 };

@@ -67,9 +67,8 @@ module.exports = withBundleAnalyzer(
             config.node = {
                 fs: 'empty',
             };
-            // config.resolve.alias['styled-components'] = require.resolve(
-            //     'styled-components'
-            // );
+            config.resolve.alias['etag'] = require.resolve('etag');
+            config.resolve.alias['node-fetch'] = require.resolve('node-fetch');
             return config;
         },
     })

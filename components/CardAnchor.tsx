@@ -22,7 +22,7 @@ export default class CardAnchor extends PureComponent<any, any> {
                                 srcSet={item.picture.imageUrlLarge}
                             />
                             <img
-                                src={item.picture.baseImageUrl}
+                                src={item.picture.imageBaseUrl}
                                 alt={item.title}
                             />
                         </picture>

@@ -19,15 +19,12 @@
         "next": "next",
         "start": "npm run dev",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "webpack-bundle-analyzer": "cross-env WEBPACK_BUNDLE_ANALYZER=true next build"
+        "webpack-bundle-analyzer": "cross-env WEBPACK_BUNDLE_ANALYZER=true NOW_SERVERLESS=false next build"
     },
     "author": "Willem Liu",
     "license": "ISC",
     "dependencies": {
         "@babel/plugin-proposal-decorators": "^7.4.4",
-        "@fdmg/fd-opening-teaser": "^2.0.2",
-        "@fdmg/fd-square-teaser": "^2.0.3",
-        "@fdmg/fd-teaser": "^2.0.3",
         "@next/bundle-analyzer": "^8.1.0",
         "@types/base-64": "^0.1.3",
         "@types/etag": "^1.8.0",

@@ -5,6 +5,8 @@ import Head from 'next/head';
 import { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
+import etag from 'etag';
+import { getIsServer } from '../utils/server';
 
 interface Branded {
     articleview: {
@@ -16,6 +18,7 @@ interface Branded {
     };
 }
 interface Props {
+    etag?: string;
     article: Branded;
 }
 
@@ -84,7 +87,10 @@ Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
             },
         };
     }
-    return { article };
+    return {
+        etag: getIsServer() ? etag(`${JSON.stringify(article)}`) : undefined,
+        article,
+    };
 };
 
 export default Branded;

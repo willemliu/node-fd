@@ -1,7 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { TeaserStyle } from '@fdmg/fd-teaser';
-import { SquareTeaserStyle } from '@fdmg/fd-square-teaser';
-import { OpeningTeaserStyle } from '@fdmg/fd-opening-teaser';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -12,10 +9,4 @@ body {
 }
 `;
 
-const FdStyle = createGlobalStyle`
-${OpeningTeaserStyle}
-${TeaserStyle}
-${SquareTeaserStyle}
-`;
-
-export { GlobalStyle, FdStyle };
+export { GlobalStyle };

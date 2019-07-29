@@ -10,6 +10,7 @@ import BrandedPodcastListComponent from '../components/BrandedPodcastListCompone
 import TopPodcastListComponent from '../components/TopPodcastListComponent';
 import SpecialsListComponent from '../components/SpecialsListComponent';
 import { encode } from 'base-64';
+import { getIsServer } from '../utils/server';
 
 interface Home {
     newsFragmentsModel: {
@@ -107,7 +108,7 @@ BNR.getInitialProps = async (): Promise<Props> => {
     }
 
     return {
-        etag: etag(`${JSON.stringify(home)}`),
+        etag: getIsServer() ? etag(`${JSON.stringify(home)}`) : undefined,
         home,
         updateTimestamp: new Date().toUTCString(),
     };

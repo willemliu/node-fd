@@ -6,6 +6,7 @@ import { BnrPageStyle } from '../styles/Bnr';
 import etag from 'etag';
 import PodcastsPageListComponent from '../components/PodcastsPageListComponent';
 import TopPodcastListComponent from '../components/TopPodcastListComponent';
+import { getIsServer } from '../utils/server';
 
 interface Podcasts {
     programListModel: {
@@ -75,7 +76,7 @@ Podcasts.getInitialProps = async (): Promise<Props> => {
     }
 
     return {
-        etag: etag(`${JSON.stringify(podcasts)}`),
+        etag: getIsServer() ? etag(`${JSON.stringify(podcasts)}`) : undefined,
         podcasts,
     };
 };
