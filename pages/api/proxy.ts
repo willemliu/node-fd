@@ -1,5 +1,5 @@
 import Cors from 'micro-cors';
-import fetch from 'node-fetch';
+import 'fetch-everywhere';
 import { encode } from 'base-64';
 
 const cors = Cors({ allowMethods: ['GET', 'HEAD'] });
