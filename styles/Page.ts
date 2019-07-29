@@ -12,14 +12,16 @@ const PageStyle = styled.div`
 
     main {
         flex: 1 1 auto;
-        max-width: calc(100vw - 300px); // IE11 fix
         @media only screen and (min-width: 861px) {
+            max-width: calc(100vw - 300px); // IE11 fix
             margin-right: 1rem;
         }
     }
     aside {
         flex: 0 0 300px;
-        max-width: 300px; // IE11 fix
+        @media only screen and (min-width: 861px) {
+            max-width: 300px; // IE11 fix
+        }
     }
 
     .ripple {
