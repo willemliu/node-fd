@@ -43,7 +43,7 @@ export default class MyDocument extends Document<any> {
                         httpEquiv="Content-Type"
                         content="text/html; charset=UTF-8"
                     />
-                    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+                    <meta httpEquiv="X-UA-Compatible" content="IE=11" />
                     <link rel="manifest" href="/static/manifest.json" />
                     <link
                         rel="shortcut icon"
