@@ -3,14 +3,13 @@ import Head from 'next/head';
 import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
-import etag from 'etag';
 import TopNewsListComponent from '../components/TopNewsListComponent';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
 import BrandedPodcastListComponent from '../components/BrandedPodcastListComponent';
 import TopPodcastListComponent from '../components/TopPodcastListComponent';
 import SpecialsListComponent from '../components/SpecialsListComponent';
 import { encode } from 'base-64';
-import { getIsServer } from '../utils/server';
+import md5 from 'md5';
 
 interface Home {
     newsFragmentsModel: {
@@ -108,7 +107,7 @@ BNR.getInitialProps = async (): Promise<Props> => {
     }
 
     return {
-        etag: getIsServer() ? etag(`${JSON.stringify(home)}`) : undefined,
+        etag: md5(`"${JSON.stringify(home)}"`),
         home,
         updateTimestamp: new Date().toUTCString(),
     };

@@ -3,10 +3,9 @@ import Head from 'next/head';
 import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
 import { BnrPageStyle } from '../styles/Bnr';
-import etag from 'etag';
+import md5 from 'md5';
 import PodcastsPageListComponent from '../components/PodcastsPageListComponent';
 import TopPodcastListComponent from '../components/TopPodcastListComponent';
-import { getIsServer } from '../utils/server';
 
 interface Podcasts {
     programListModel: {
@@ -76,7 +75,7 @@ Podcasts.getInitialProps = async (): Promise<Props> => {
     }
 
     return {
-        etag: getIsServer() ? etag(`${JSON.stringify(podcasts)}`) : undefined,
+        etag: md5(`"${JSON.stringify(podcasts)}"`),
         podcasts,
     };
 };

@@ -7,8 +7,7 @@ import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
 import styled from 'styled-components';
-import etag from 'etag';
-import { getIsServer } from '../utils/server';
+import md5 from 'md5';
 
 interface Props {
     etag?: string;
@@ -101,9 +100,7 @@ Podcast.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
         };
     }
     return {
-        etag: getIsServer()
-            ? etag(`${JSON.stringify(podcastModel)}`)
-            : undefined,
+        etag: md5(`"${JSON.stringify(podcastModel)}"`),
         podcast: podcastModel,
     };
 };

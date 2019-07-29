@@ -5,8 +5,7 @@ import Head from 'next/head';
 import { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
-import etag from 'etag';
-import { getIsServer } from '../utils/server';
+import md5 from 'md5';
 
 interface Article {
     articleview: {
@@ -88,7 +87,7 @@ Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
         };
     }
     return {
-        etag: getIsServer() ? etag(`${JSON.stringify(article)}`) : undefined,
+        etag: md5(`"${JSON.stringify(article)}"`),
         article,
     };
 };
