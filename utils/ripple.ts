@@ -1,3 +1,13 @@
+import { getIsServer } from './server';
+
+if (!getIsServer() && !('remove' in Element.prototype)) {
+    (Element as any).prototype['remove'] = function() {
+        if (this.parentNode) {
+            this.parentNode.removeChild(this);
+        }
+    };
+}
+
 export function ripple(e: React.MouseEvent) {
     const targetEl = e.currentTarget as HTMLElement;
     if (!targetEl.classList.contains('ripple')) {

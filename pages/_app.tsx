@@ -1,9 +1,12 @@
-import 'core-js';
+import * as promisePolyfill from 'es6-promise';
+import 'fetch-everywhere';
 import React from 'react';
 import App, { Container } from 'next/app';
 import { GlobalStyle } from '../styles/Global';
 import Router from 'next/router';
 import Loader from '../components/Loader';
+
+promisePolyfill.polyfill();
 
 export default class PersistentApp extends App {
     state: any = {

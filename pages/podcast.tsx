@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import 'fetch-everywhere';
 import { PageStyle } from '../styles/Page';
 import { BnrPageStyle } from '../styles/Bnr';
 import Head from 'next/head';

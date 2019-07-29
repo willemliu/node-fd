@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import 'fetch-everywhere';
 import Head from 'next/head';
 import { PageStyle } from '../styles/Page';
 import Menu from '../components/Menu';
