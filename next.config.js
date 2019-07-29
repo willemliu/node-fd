@@ -70,20 +70,6 @@ module.exports = withBundleAnalyzer(
             };
             // config.resolve.alias['etag'] = require.resolve('etag');
             // config.resolve.alias['node-fetch'] = require.resolve('node-fetch');
-
-            const originalEntry = config.entry;
-            config.entry = async () => {
-                const entries = await originalEntry();
-
-                if (
-                    entries['main.js'] &&
-                    !entries['main.js'].includes('./utils/polyfills.js')
-                ) {
-                    entries['main.js'].unshift('./utils/polyfills.js');
-                }
-
-                return entries;
-            };
             return config;
         },
     })
