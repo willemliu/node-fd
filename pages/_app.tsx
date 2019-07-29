@@ -8,6 +8,8 @@ export default class PersistentApp extends App {
     state: any = {
         loading: false,
     };
+    private cachedPageScrollPos: number[] = [];
+    private poppedState = false;
 
     static async getInitialProps({ Component, ctx }: any) {
         let pageProps: any = {};
@@ -24,9 +26,26 @@ export default class PersistentApp extends App {
     componentDidMount() {
         Router.events.on('routeChangeStart', () => {
             this.setState({ loading: true });
+            if (!this.poppedState) {
+                this.cachedPageScrollPos.push(window.scrollY);
+            }
         });
         Router.events.on('routeChangeComplete', () => {
             this.setState({ loading: false });
+            if (this.poppedState) {
+                const scrollY = this.cachedPageScrollPos.pop();
+                if (typeof scrollY != 'undefined') {
+                    setTimeout(() => {
+                        window.scrollTo(0, scrollY);
+                    }, 500);
+                }
+            }
+            this.poppedState = false;
+        });
+
+        Router.beforePopState(() => {
+            this.poppedState = true;
+            return true;
         });
     }
 

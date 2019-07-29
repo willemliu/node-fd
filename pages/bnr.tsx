@@ -105,6 +105,7 @@ BNR.getInitialProps = async (): Promise<Props> => {
             specialTeasersModel: { teasers: [] },
         };
     }
+
     return {
         etag: etag(`${JSON.stringify(home)}`),
         home,

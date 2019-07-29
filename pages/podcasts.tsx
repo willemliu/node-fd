@@ -73,6 +73,7 @@ Podcasts.getInitialProps = async (): Promise<Props> => {
             playerLauncherModel: { topReadArticlesHavingAudio: [] },
         };
     }
+
     return {
         etag: etag(`${JSON.stringify(podcasts)}`),
         podcasts,
