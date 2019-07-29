@@ -6,6 +6,7 @@ import { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
+import styled from 'styled-components';
 
 interface Props {
     podcast: {
@@ -39,20 +40,20 @@ function Podcast(props: Props) {
             <Menu />
             <div className="body">
                 <main>
-                    <section>
-                        <h1>
-                            {
-                                props.podcast.programIntroductionTeaserModel
-                                    .teaser.title
-                            }
-                        </h1>
+                    <StyledStickyHeader>
+                        {
+                            props.podcast.programIntroductionTeaserModel.teaser
+                                .title
+                        }
+                    </StyledStickyHeader>
+                    <StyledIntro>
                         <p>
                             {
                                 props.podcast.programIntroductionTeaserModel
                                     .teaser.intro
                             }
                         </p>
-                    </section>
+                    </StyledIntro>
                     <section>
                         <LatestPodcastListComponent
                             title="Alle podcasts"
@@ -100,5 +101,36 @@ Podcast.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
         podcast: podcastModel,
     };
 };
+
+const StyledStickyHeader = styled.h1`
+    transform: skew(0deg, -7deg);
+    padding: 0.1rem 0.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffd200;
+    color: black;
+    float: right;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    @media only screen and (min-width: 861px) {
+        font-size: 1.5rem;
+    }
+    @media only screen and (min-width: 1025px) {
+        font-size: 2rem;
+    }
+    position: sticky;
+    top: 40px;
+    z-index: 2;
+`;
+
+const StyledIntro = styled.section`
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+    position: relative;
+    p {
+        padding: 1rem;
+    }
+`;
 
 export default Podcast;
