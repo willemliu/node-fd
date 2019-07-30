@@ -86,7 +86,11 @@ BNR.getInitialProps = async (): Promise<Props> => {
         //     `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`
         // ).then((res) => res.json());
 
-        home = await fetch(`${process.env.PROXY}`).then((res) => {
+        home = await fetch(
+            process.env.PROXY
+                ? process.env.PROXY
+                : 'https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/dev'
+        ).then((res) => {
             if (res.ok) {
                 return res.json();
             } else {

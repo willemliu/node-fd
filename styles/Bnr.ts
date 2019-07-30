@@ -37,6 +37,7 @@ const StyledAnchor = styled.a`
 `;
 
 const CardSection = styled.section`
+    display: inline-block;
     h3 {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 1rem;

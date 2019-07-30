@@ -43,7 +43,9 @@ const StyledList = styled.section`
         padding: 0;
         display: flex;
         flex-direction: column;
-        max-width: 100vw; // IE11 fix
+        @media only screen and (min-width: 861px) {
+            max-width: calc(100vw - 300px); // IE11 fix
+        }
         @media only screen and (min-width: 641px) {
             flex-direction: row;
         }
@@ -57,6 +59,7 @@ const StyledList = styled.section`
         }
         margin: 0;
         img {
+            display: block;
             width: 96px;
             @media only screen and (min-width: 641px) {
                 width: 100%;

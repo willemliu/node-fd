@@ -61,7 +61,11 @@ function Podcasts(props: Props) {
 Podcasts.getInitialProps = async (): Promise<Props> => {
     let podcasts: Podcasts;
     try {
-        podcasts = await fetch(`${process.env.PROXY}/podcasts`).then((res) => {
+        podcasts = await fetch(
+            process.env.PROXY
+                ? `${process.env.PROXY}/podcasts`
+                : 'https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/dev/podcasts'
+        ).then((res) => {
             if (res.ok) {
                 return res.json();
             } else {

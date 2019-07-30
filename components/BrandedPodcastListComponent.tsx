@@ -45,7 +45,9 @@ const StyledList = styled.section`
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        max-width: 100vw; // IE11 fix
+        @media only screen and (min-width: 861px) {
+            max-width: calc(100vw - 300px); // IE11 fix
+        }
     }
     figure {
         margin: 0;

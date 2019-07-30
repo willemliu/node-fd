@@ -50,6 +50,7 @@ const StyledList = styled.section`
         float: left;
         margin: 0;
         img {
+            display: block;
             width: 96px;
         }
     }

@@ -45,11 +45,14 @@ const StyledList = styled.section`
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        max-width: 100vw; // IE11 fix
+        @media only screen and (min-width: 861px) {
+            max-width: calc(100vw - 300px); // IE11 fix
+        }
     }
     figure {
         margin: 0;
         img {
+            display: block;
             width: 100%;
         }
     }
@@ -57,7 +60,7 @@ const StyledList = styled.section`
         position: relative;
         flex: 0 1 calc(50% - 0.25rem);
         max-width: calc(50% - 0.25rem); // IE11 fix
-        @media only screen and (min-width: 860px) {
+        @media only screen and (min-width: 861px) {
             flex: 0 1 calc(25% - 0.25rem);
             max-width: calc(25% - 0.25rem); // IE11 fix
         }
