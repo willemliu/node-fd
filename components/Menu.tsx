@@ -1,14 +1,31 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import { ripple } from '../utils/ripple';
+import { useRouter } from 'next/router';
 
 export default () => {
+    const Router = useRouter();
+    const selectedMenu: any = { '': false, podcasts: false };
+    Object.keys(selectedMenu).forEach((key: string) => {
+        const splittedPath = Router.pathname.split('/');
+        if (!splittedPath[1]) {
+            selectedMenu['/'] = true;
+        } else {
+            selectedMenu[key] =
+                key.indexOf(splittedPath[1].toLowerCase()) === 0;
+        }
+    });
     return (
         <StyledHeader>
             <img src="/static/logo65x104.png" alt="BNR Nieuwsradio" />
             <LinksContainer>
                 <Link href="/" as="/" prefetch={true} passHref={true}>
-                    <a className="ripple" onClick={ripple}>
+                    <a
+                        className={`ripple${
+                            selectedMenu['/'] ? ' active' : ''
+                        }`}
+                        onClick={ripple}
+                    >
                         <span>Home</span>
                     </a>
                 </Link>
@@ -18,7 +35,12 @@ export default () => {
                     prefetch={true}
                     passHref={true}
                 >
-                    <a className="ripple" onClick={ripple}>
+                    <a
+                        className={`ripple ${
+                            selectedMenu['podcasts'] ? ' active' : ''
+                        }`}
+                        onClick={ripple}
+                    >
                         <span>Podcasts</span>
                     </a>
                 </Link>
@@ -62,8 +84,32 @@ const StyledHeader = styled.header`
         align-items: center;
         padding: 0 1rem;
         box-sizing: border-box;
+        text-decoration: none;
+        text-align: center;
         &.ripple {
             overflow: unset;
+        }
+        span {
+        }
+        span::after {
+            content: '';
+            bottom: 0;
+            transition: transform 0.2s ease-out;
+            display: block;
+            width: 100%;
+            left: 0;
+            right: 0;
+            background-color: #ffd200;
+            height: 2px;
+            transform: scaleX(0);
+            position: absolute;
+        }
+        &.active,
+        &:hover {
+            span::after {
+                content: '';
+                transform: scaleX(1);
+            }
         }
     }
 `;
