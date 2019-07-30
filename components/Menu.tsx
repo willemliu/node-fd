@@ -5,9 +5,10 @@ import { useRouter } from 'next/router';
 
 export default () => {
     const Router = useRouter();
-    const selectedMenu: any = { '': false, podcasts: false };
+    const selectedMenu: any = { '': false, podcasts: false, article: false };
     Object.keys(selectedMenu).forEach((key: string) => {
         const splittedPath = Router.pathname.split('/');
+        console.log(splittedPath);
         if (!splittedPath[1]) {
             selectedMenu['/'] = true;
         } else {
@@ -37,7 +38,9 @@ export default () => {
                 >
                     <a
                         className={`ripple ${
-                            selectedMenu['podcasts'] ? ' active' : ''
+                            selectedMenu['podcasts'] || selectedMenu['article']
+                                ? ' active'
+                                : ''
                         }`}
                         onClick={ripple}
                     >
