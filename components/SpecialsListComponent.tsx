@@ -15,14 +15,19 @@ export default (props: Props) => {
             <StyledH2>{props.title}</StyledH2>
             <ul>
                 {props.items.map((item: any) => {
+                    let href = item.publicationUrl;
+                    if (href.startsWith('/podcast')) {
+                        href = `/podcastArticle?articleId=${item.id}`;
+                    } else if (href.startsWith('/brand')) {
+                        href = `/branded?articleId=${item.id}`;
+                    } else {
+                        href = `/article?articleId=${item.id}`;
+                    }
+
                     return (
                         <li key={item.id} className="ripple" onClick={ripple}>
                             <Link
-                                href={
-                                    item.brandSponsor
-                                        ? `/branded?articleId=${item.id}`
-                                        : `/article?articleId=${item.id}`
-                                }
+                                href={href}
                                 as={item.publicationUrl}
                                 passHref={true}
                                 prefetch={true}

@@ -34,6 +34,10 @@
             "dest": "/branded?articleId=$articleId&section=brandedstories&subSection=$subSection"
         },
         {
+            "src": "/podcast/(?<subSection>.+)/(?<articleId>\\d+)/(?<title>.+)$",
+            "dest": "/podcastArticle?articleId=$articleId&section=$section&subSection=$subSection"
+        },
+        {
             "src": "/(?<section>.+)/(?<subSection>.+)/(?<articleId>\\d+)/(?<title>.+)$",
             "dest": "/article?articleId=$articleId&section=$section&subSection=$subSection"
         },
