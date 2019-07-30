@@ -10,6 +10,7 @@ import TopPodcastListComponent from '../components/TopPodcastListComponent';
 import SpecialsListComponent from '../components/SpecialsListComponent';
 import { encode } from 'base-64';
 import md5 from 'md5';
+import { canonical } from '../utils/canonical';
 
 interface Home {
     newsFragmentsModel: {
@@ -40,6 +41,7 @@ function BNR(props: Props) {
                         : null}
                     Home | BNR Nieuwsradio
                 </title>
+                {canonical(true)}
             </Head>
             <Menu />
             <div className="body">

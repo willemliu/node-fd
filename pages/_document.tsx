@@ -2,6 +2,7 @@ import Document, { Html, Main, NextScript, Head } from 'next/document';
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 import { setIsServer } from '../utils/server';
+import { canonical, setServerPathname } from '../utils/canonical';
 
 export default class MyDocument extends Document<any> {
     static async getInitialProps(ctx: any) {
@@ -44,6 +45,7 @@ export default class MyDocument extends Document<any> {
                         content="text/html; charset=UTF-8"
                     />
                     <meta httpEquiv="X-UA-Compatible" content="IE=11" />
+                    {canonical()}
                     <link rel="manifest" href="/static/manifest.json" />
                     <link
                         rel="shortcut icon"

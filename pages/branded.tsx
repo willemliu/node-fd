@@ -6,6 +6,7 @@ import { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 import md5 from 'md5';
+import { canonical } from '../utils/canonical';
 
 interface Branded {
     articleview: {
@@ -34,6 +35,7 @@ function Branded(props: Props) {
                         : null}
                     | BNR Nieuwsradio
                 </title>
+                {canonical(true)}
             </Head>
             <Menu />
             <div className="body">

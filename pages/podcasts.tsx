@@ -6,6 +6,7 @@ import { BnrPageStyle } from '../styles/Bnr';
 import md5 from 'md5';
 import PodcastsPageListComponent from '../components/PodcastsPageListComponent';
 import TopPodcastListComponent from '../components/TopPodcastListComponent';
+import { canonical } from '../utils/canonical';
 
 interface Podcasts {
     programListModel: {
@@ -32,6 +33,7 @@ function Podcasts(props: Props) {
                         : null}
                     Podcasts | BNR Nieuwsradio
                 </title>
+                {canonical(true)}
             </Head>
             <Menu />
             <div className="body">

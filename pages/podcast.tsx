@@ -8,6 +8,7 @@ import Menu from '../components/Menu';
 import LatestPodcastListComponent from '../components/LatestPodcastListComponent';
 import styled from 'styled-components';
 import md5 from 'md5';
+import { canonical } from '../utils/canonical';
 
 interface Props {
     etag?: string;
@@ -38,6 +39,7 @@ function Podcast(props: Props) {
                     {props.podcast.programIntroductionTeaserModel.teaser.title}{' '}
                     | BNR Nieuwsradio
                 </title>
+                {canonical(true)}
             </Head>
             <Menu />
             <div className="body">
@@ -106,6 +108,7 @@ Podcast.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
 };
 
 const StyledStickyHeader = styled.h1`
+    margin-right: -0.5rem;
     transform: skew(0deg, -7deg);
     padding: 0.1rem 0.5rem;
     font-family: Arial, Helvetica, sans-serif;
