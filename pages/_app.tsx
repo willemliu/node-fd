@@ -5,6 +5,7 @@ import App, { Container } from 'next/app';
 import { GlobalStyle } from '../styles/Global';
 import Router from 'next/router';
 import Loader from '../components/Loader';
+import Soundcloud from '../components/Soundcloud';
 
 promisePolyfill.polyfill();
 
@@ -61,6 +62,7 @@ export default class PersistentApp extends App {
                 <GlobalStyle />
                 {this.state.loading ? <Loader /> : ''}
                 <Component {...pageProps} />
+                <Soundcloud />
             </Container>
         );
     }

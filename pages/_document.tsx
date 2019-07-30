@@ -2,7 +2,7 @@ import Document, { Html, Main, NextScript, Head } from 'next/document';
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 import { setIsServer } from '../utils/server';
-import { canonical, setServerPathname } from '../utils/canonical';
+import { canonical } from '../utils/canonical';
 
 export default class MyDocument extends Document<any> {
     static async getInitialProps(ctx: any) {
