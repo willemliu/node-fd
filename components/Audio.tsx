@@ -146,7 +146,7 @@ const StyledAudio = styled.div`
             & + div {
                 align-items: center;
                 justify-content: center;
-                flex: 1 0 auto;
+                flex: 0 1 80px;
                 margin: 0;
                 cursor: pointer;
                 display: flex;
