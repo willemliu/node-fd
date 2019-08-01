@@ -7,17 +7,25 @@ import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 import md5 from 'md5';
 import { canonical } from '../utils/canonical';
+import { useEffect } from 'react';
+import AudioStore from '../stores/Audio';
 
 interface Branded {
+    analyticsInfo: {
+        audioId?: string;
+    };
     articleview: {
         article: {
+            id?: number;
             title: string;
             intro: string;
             content: string;
+            publicationUrl?: string;
         };
     };
 }
 interface Props {
+    audio: any;
     etag?: string;
     article: Branded;
 }
@@ -25,6 +33,18 @@ interface Props {
 function Branded(props: Props) {
     const router = useRouter();
     const { articleId, section, subSection, title } = router.query;
+
+    useEffect(() => {
+        [].slice
+            .call(document.querySelectorAll('.article-audio-button'))
+            .forEach((audioButton: HTMLAnchorElement) => {
+                audioButton.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    AudioStore.setAudio(props.audio);
+                });
+            });
+    }, []);
+
     return (
         <PageStyle>
             <BnrPageStyle />
@@ -66,6 +86,8 @@ function Branded(props: Props) {
 Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     const { articleId } = ctx.query;
     let article: Branded;
+    let audio: any;
+
     try {
         article = await fetch(
             `${process.env.PROXY}/brandstories/-/${articleId}/-`
@@ -76,9 +98,23 @@ Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
                 throw new Error(`${res.status}`);
             }
         });
+
+        audio = await fetch(
+            `${process.env.PROXY}/player/audio/${article.analyticsInfo.audioId}/${article.articleview.article.id}`
+        ).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(`${res.status}`);
+            }
+        });
+        audio.playerview.publicationUrl =
+            article.articleview.article.publicationUrl;
+        audio.playerview.articleId = article.articleview.article.id;
     } catch (e) {
         console.error(e);
         article = {
+            analyticsInfo: {},
             articleview: {
                 article: {
                     content: '',
@@ -89,6 +125,7 @@ Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
         };
     }
     return {
+        audio,
         etag: `"${md5(JSON.stringify(article))}"`,
         article,
     };

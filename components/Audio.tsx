@@ -1,19 +1,56 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 import AudioStore from '../stores/Audio';
 import styled from 'styled-components';
 import Link from 'next/link';
+import React from 'react';
 
 export default () => {
     const [audio, setAudio] = useState<any>();
-    const [paused, setPaused] = useState(false);
+    const [paused, setPaused] = useState(true);
+    const [progress, setProgress] = useState(0);
+    let audioRef: RefObject<HTMLAudioElement> = React.createRef();
+
+    const seek = (e: React.MouseEvent) => {
+        if (audioRef && audioRef.current) {
+            const audioEl = audioRef.current;
+            var percent =
+                e.nativeEvent.offsetX /
+                e.currentTarget.getBoundingClientRect().width;
+
+            audioEl.currentTime = percent * audioEl.duration;
+            setProgress(percent / 100);
+        }
+    };
 
     useEffect(() => {
         AudioStore.subscribe(() => {
             setAudio(AudioStore.getAudio());
             setPaused(false);
-            (document.querySelector('audio') as HTMLAudioElement).play();
         });
+        if (audioRef && audioRef.current) {
+            const audioEl = audioRef.current;
+            audioEl.addEventListener(
+                'timeupdate',
+                () => {
+                    let percent =
+                        (100 / audioEl.duration) * audioEl.currentTime;
+                    if (percent === NaN) {
+                        percent = 0;
+                    }
+                    setProgress(percent);
+                },
+                false
+            );
+        }
     }, []);
+
+    useEffect(() => {
+        if (!paused && audioRef.current) {
+            audioRef.current.play();
+        } else if (audioRef.current) {
+            audioRef.current.pause();
+        }
+    }, [paused, audio]);
 
     useEffect(() => {
         const audioButton = document.querySelector('.article-audio-button');
@@ -23,51 +60,61 @@ export default () => {
     });
 
     const handleClick = () => {
-        if ((document.querySelector('audio') as HTMLAudioElement).paused) {
-            (document.querySelector('audio') as HTMLAudioElement).play();
+        if (paused) {
             setPaused(false);
         } else {
-            (document.querySelector('audio') as HTMLAudioElement).pause();
             setPaused(true);
         }
     };
 
-    return audio ? (
+    return (
         <StyledAudio>
-            <audio src={audio.playerview.audioUrl} />
-            <div>
-                <img src={audio.playerview.shareImageUrl} />
-                <Link
-                    href={`/podcastArticle?articleId=${audio.playerview.articleId}`}
-                    as={audio.playerview.publicationUrl}
-                    passHref={true}
-                >
-                    <a>
-                        <h2>{audio.playerview.title}</h2>
-                        <p>{audio.playerview.shareDescription}</p>
-                    </a>
-                </Link>
-                <div onClick={handleClick}>
-                    <button
-                        className={`media-button${paused ? '' : ' pause'}`}
-                    ></button>
-                </div>
-            </div>
+            <audio
+                ref={audioRef}
+                src={audio ? audio.playerview.audioUrl : null}
+            />
+            {audio ? (
+                <>
+                    <div>
+                        <img src={audio.playerview.shareImageUrl} />
+                        <Link
+                            href={`/podcastArticle?articleId=${audio.playerview.articleId}`}
+                            as={audio.playerview.publicationUrl}
+                            passHref={true}
+                        >
+                            <a>
+                                <h2>{audio.playerview.title}</h2>
+                                <p>{audio.playerview.shareDescription}</p>
+                            </a>
+                        </Link>
+                        <div onClick={handleClick}>
+                            <button
+                                className={`media-button${
+                                    paused ? '' : ' pause'
+                                }`}
+                            ></button>
+                        </div>
+                    </div>
+                    <progress max={100} value={progress} onClick={seek} />
+                </>
+            ) : null}
         </StyledAudio>
-    ) : null;
+    );
 };
 
 const StyledAudio = styled.div`
     position: fixed;
-    height: 60px;
+    display: flex;
+    flex-direction: column;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
     > div {
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.5);
         display: flex;
         img {
-            height: 60px;
+            height: 50px;
         }
         > a {
             text-decoration: none;
@@ -103,6 +150,24 @@ const StyledAudio = styled.div`
                 display: flex;
             }
         }
+    }
+
+    progress {
+        flex: 1 1 auto;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        color: #ffd200;
+        &::-webkit-progress-value {
+            background-color: #ffd200;
+            transition: width 0.5s ease-out;
+        }
+        &::-webkit-progress-bar {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        &::-moz-progress-bar {
+            background-color: #ffd200;
+        }
+        cursor: pointer;
     }
 
     .media-button {
