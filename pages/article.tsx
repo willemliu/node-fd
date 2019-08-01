@@ -20,6 +20,7 @@ interface Article {
             title: string;
             intro: string;
             content: string;
+            publicationUrl?: string;
         };
     };
 }
@@ -106,6 +107,9 @@ Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
                 throw new Error(`${res.status}`);
             }
         });
+        audio.playerview.publicationUrl =
+            article.articleview.article.publicationUrl;
+        audio.playerview.articleId = article.articleview.article.id;
     } catch (e) {
         console.error(e);
         article = {

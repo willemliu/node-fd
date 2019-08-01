@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import AudioStore from '../stores/Audio';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 export default () => {
     const [audio, setAudio] = useState<any>();
@@ -36,10 +37,16 @@ export default () => {
             <audio src={audio.playerview.audioUrl} />
             <div>
                 <img src={audio.playerview.shareImageUrl} />
-                <div>
-                    <h2>{audio.playerview.title}</h2>
-                    <p>{audio.playerview.shareDescription}</p>
-                </div>
+                <Link
+                    href={`/podcastArticle?articleId=${audio.playerview.articleId}`}
+                    as={audio.playerview.publicationUrl}
+                    passHref={true}
+                >
+                    <a>
+                        <h2>{audio.playerview.title}</h2>
+                        <p>{audio.playerview.shareDescription}</p>
+                    </a>
+                </Link>
                 <div onClick={handleClick}>
                     <button
                         className={`media-button${paused ? '' : ' pause'}`}
@@ -62,8 +69,10 @@ const StyledAudio = styled.div`
         img {
             height: 60px;
         }
-        > div {
+        > a {
+            text-decoration: none;
             display: flex;
+            color: inherit;
             &:first-of-type {
                 padding: 0.5rem;
             }
@@ -74,8 +83,8 @@ const StyledAudio = styled.div`
             }
             h2,
             p {
-                font-family: Arial, Helvetica, sans-serif;
                 filter: invert(1);
+                font-family: Arial, Helvetica, sans-serif;
                 margin: 0;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -91,6 +100,7 @@ const StyledAudio = styled.div`
                 flex: 1 1 auto;
                 margin: 0;
                 cursor: pointer;
+                display: flex;
             }
         }
     }
