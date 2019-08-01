@@ -115,11 +115,13 @@ const StyledAudio = styled.div`
         display: flex;
         img {
             height: 50px;
+            flex: 1 0 auto;
         }
         > a {
             text-decoration: none;
             display: flex;
             color: inherit;
+            flex: 1 1 auto;
             &:first-of-type {
                 padding: 0.5rem;
             }
@@ -144,7 +146,7 @@ const StyledAudio = styled.div`
             & + div {
                 align-items: center;
                 justify-content: center;
-                flex: 1 1 auto;
+                flex: 1 0 auto;
                 margin: 0;
                 cursor: pointer;
                 display: flex;
