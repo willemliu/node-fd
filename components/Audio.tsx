@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AudioStore, { Audio } from '../stores/Audio';
+import AudioStore from '../stores/Audio';
 import styled from 'styled-components';
 
 export default () => {
