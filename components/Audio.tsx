@@ -58,7 +58,7 @@ export default () => {
 };
 
 const StyledAudio = styled.div`
-    position: absolute;
+    position: sticky;
     height: 60px;
     bottom: 0;
     left: 0;
