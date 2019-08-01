@@ -115,7 +115,7 @@ const StyledAudio = styled.div`
         display: flex;
         img {
             height: 50px;
-            flex: 1 0 auto;
+            flex: 0 1 auto;
         }
         > a {
             text-decoration: none;
