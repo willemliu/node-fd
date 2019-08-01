@@ -7,6 +7,7 @@ html {
 
 .body {
     margin: .5rem;
+    padding-bottom: calc(60px + 1rem);
 }
 
 a {
