@@ -83,7 +83,7 @@ const StyledAudio = styled.div`
             }
             h2,
             p {
-                filter: invert(1);
+                color: white;
                 font-family: Arial, Helvetica, sans-serif;
                 margin: 0;
                 text-overflow: ellipsis;
