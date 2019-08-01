@@ -7,10 +7,16 @@ import { useRouter } from 'next/router';
 import Menu from '../components/Menu';
 import md5 from 'md5';
 import { canonical } from '../utils/canonical';
+import { useEffect } from 'react';
+import AudioStore from '../stores/Audio';
 
 interface Article {
+    analyticsInfo: {
+        audioId?: string;
+    };
     articleview: {
         article: {
+            id?: number;
             title: string;
             intro: string;
             content: string;
@@ -18,6 +24,7 @@ interface Article {
     };
 }
 interface Props {
+    audio: any;
     article: Article;
     etag?: string;
 }
@@ -25,6 +32,18 @@ interface Props {
 function Article(props: Props) {
     const router = useRouter();
     const { articleId, section, subSection, title } = router.query;
+
+    useEffect(() => {
+        [].slice
+            .call(document.querySelectorAll('.article-audio-button'))
+            .forEach((audioButton: HTMLAnchorElement) => {
+                audioButton.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    AudioStore.setAudio(props.audio.playerview.audioUrl);
+                });
+            });
+    }, []);
+
     return (
         <PageStyle>
             <BnrPageStyle />
@@ -66,6 +85,7 @@ function Article(props: Props) {
 Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     const { articleId } = ctx.query;
     let article: Article;
+    let audio: any;
     try {
         article = await fetch(`${process.env.PROXY}/-/${articleId}/-`).then(
             (res) => {
@@ -76,9 +96,16 @@ Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
                 }
             }
         );
+
+        audio = await fetch(
+            `${process.env.PROXY}/player/audio/${article.analyticsInfo.audioId}/${article.articleview.article.id}`
+        ).then((res) => res.json());
     } catch (e) {
         console.error(e);
         article = {
+            analyticsInfo: {
+                audioId: '',
+            },
             articleview: {
                 article: {
                     content: '',
@@ -90,6 +117,7 @@ Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     }
     return {
         etag: `"${md5(JSON.stringify(article))}"`,
+        audio,
         article,
     };
 };

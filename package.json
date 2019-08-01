@@ -54,6 +54,7 @@
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "resolve-from": "^5.0.0",
+        "resub": "^1.2.2",
         "styled-components": "^4.3.2",
         "typescript": "^3.5.3",
         "unfetch": "^4.1.0",
