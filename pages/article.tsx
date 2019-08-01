@@ -39,7 +39,7 @@ function Article(props: Props) {
             .forEach((audioButton: HTMLAnchorElement) => {
                 audioButton.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    AudioStore.setAudio(props.audio.playerview.audioUrl);
+                    AudioStore.setAudio(props.audio);
                 });
             });
     }, []);
@@ -99,7 +99,13 @@ Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
 
         audio = await fetch(
             `${process.env.PROXY}/player/audio/${article.analyticsInfo.audioId}/${article.articleview.article.id}`
-        ).then((res) => res.json());
+        ).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(`${res.status}`);
+            }
+        });
     } catch (e) {
         console.error(e);
         article = {

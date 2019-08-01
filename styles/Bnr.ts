@@ -12,6 +12,30 @@ html {
 a {
     color: #0075b7;
 }
+
+.play-button {
+        margin-right: 0.5rem;
+        line-height: 0;
+        .icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            border: 4px solid black;
+            border-radius: 16px;
+            background-color: #ffd200;
+        }
+        .icon .icon-play {
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid black;
+        }
+    }
 `;
 
 const StyledH2 = styled.h2`
@@ -134,29 +158,6 @@ const StyledArticle = styled.article`
         align-items: center;
         background-color: rgba(0, 0, 0, 0.04);
         padding: 1rem;
-    }
-    .play-button {
-        margin-right: 0.5rem;
-        line-height: 0;
-        .icon {
-            position: relative;
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-            border: 4px solid black;
-            border-radius: 16px;
-            background-color: #ffd200;
-        }
-        .icon .icon-play {
-            position: absolute;
-            top: 3px;
-            left: 5px;
-            width: 0;
-            height: 0;
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-            border-left: 8px solid black;
-        }
     }
 `;
 
