@@ -1,3 +1,4 @@
+import 'core-js/modules/es6.string.starts-with'; // IE11
 import * as promisePolyfill from 'es6-promise';
 import 'fetch-everywhere';
 import React from 'react';
