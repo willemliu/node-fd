@@ -8,7 +8,6 @@ export default () => {
     const selectedMenu: any = { '': false, podcast: false, article: false };
     Object.keys(selectedMenu).forEach((key: string) => {
         const splittedPath = Router.pathname.split('/');
-        console.log(splittedPath);
         if (!splittedPath[1]) {
             selectedMenu['/'] = true;
         } else {
