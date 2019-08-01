@@ -154,7 +154,7 @@ const StyledArticle = styled.article`
     }
 
     .article-audio-button {
-        display: flex;
+        display: none;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.04);
         padding: 1rem;

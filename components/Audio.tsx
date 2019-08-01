@@ -14,6 +14,13 @@ export default () => {
         });
     }, []);
 
+    useEffect(() => {
+        const audioButton = document.querySelector('.article-audio-button');
+        if (audioButton) {
+            (audioButton as HTMLAudioElement).style.display = 'flex';
+        }
+    });
+
     const handleClick = () => {
         if ((document.querySelector('audio') as HTMLAudioElement).paused) {
             (document.querySelector('audio') as HTMLAudioElement).play();
