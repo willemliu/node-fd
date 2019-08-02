@@ -18,7 +18,8 @@ const resolvers = {
         audios,
     },
 };
-const notProduction = process.env.ENVIRONMENT == 'PROD' ? false : true;
+const notProduction =
+    typeof process.env.ENVIRONMENT == 'undefined' ? false : true;
 const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
