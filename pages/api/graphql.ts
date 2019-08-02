@@ -18,8 +18,13 @@ const resolvers = {
         audios,
     },
 };
-
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const notProduction = process.env.ENVIRONMENT == 'PROD' ? false : true;
+const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
+    introspection: notProduction,
+    playground: notProduction,
+});
 
 export const config = {
     api: {
