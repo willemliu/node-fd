@@ -68,8 +68,8 @@ const StyledHeader = styled.header`
     display: flex;
     align-items: center;
     img {
-        padding: 0.5rem 1rem;
-        height: 100%;
+        height: calc(100% - 0.5rem);
+        margin: 0 0.5rem;
     }
 
     a {
