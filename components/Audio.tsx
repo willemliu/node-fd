@@ -36,6 +36,7 @@ export default () => {
                         (100 / audioEl.duration) * audioEl.currentTime;
                     if (percent === NaN) {
                         percent = 0;
+                        alert('test');
                     }
                     setProgress(percent);
                 },
@@ -126,7 +127,7 @@ const StyledAudio = styled.div`
                 padding: 0.5rem;
             }
             flex-direction: column;
-            max-width: calc(100vw - 165px);
+            max-width: calc(100vw - 175px);
             h2 {
                 font-size: 1.2rem;
             }
@@ -159,15 +160,18 @@ const StyledAudio = styled.div`
         width: 100%;
         background: rgba(0, 0, 0, 0.5);
         color: #ffd200;
+        transition: width 0.5s ease-out;
         &::-webkit-progress-value {
             background-color: #ffd200;
             transition: width 0.5s ease-out;
         }
         &::-webkit-progress-bar {
-            background: rgba(0, 0, 0, 0.5);
+            background: transparent;
+            transition: width 0.5s ease-out;
         }
         &::-moz-progress-bar {
             background-color: #ffd200;
+            transition: width 0.5s ease-out;
         }
         cursor: pointer;
     }
