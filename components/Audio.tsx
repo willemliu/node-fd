@@ -126,7 +126,7 @@ const StyledAudio = styled.div`
                 padding: 0.5rem;
             }
             flex-direction: column;
-            max-width: calc(100vw - 200px);
+            max-width: calc(100vw - 165px);
             h2 {
                 font-size: 1.2rem;
             }
@@ -146,7 +146,7 @@ const StyledAudio = styled.div`
             & + div {
                 align-items: center;
                 justify-content: center;
-                flex: 0 1 80px;
+                padding: 0 1rem;
                 margin: 0;
                 cursor: pointer;
                 display: flex;
@@ -174,6 +174,7 @@ const StyledAudio = styled.div`
 
     .media-button {
         border: 0;
+        padding: 0;
         background: transparent;
         box-sizing: border-box;
         width: 0;
