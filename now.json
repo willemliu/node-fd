@@ -7,6 +7,7 @@
             "BASIC_AUTH": "@dev-bnr-basic-auth",
             "ENVIRONMENT": "DEV",
             "GENERATE_ETAGS": "@bnr-dev-generate-etags",
+            "GRAPHQL_SERVER": "@bnr-dev-graphql-server",
             "PROXY": "@bnr-dev-proxy"
         }
     },
@@ -14,6 +15,7 @@
         "BASIC_AUTH": "@dev-bnr-basic-auth",
         "ENVIRONMENT": "DEV",
         "GENERATE_ETAGS": "@bnr-dev-generate-etags",
+        "GRAPHQL_SERVER": "@bnr-dev-graphql-server",
         "PROXY": "@bnr-dev-proxy"
     },
     "routes": [

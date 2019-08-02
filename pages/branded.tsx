@@ -9,6 +9,11 @@ import md5 from 'md5';
 import { canonical } from '../utils/canonical';
 import { useEffect } from 'react';
 import AudioStore from '../stores/Audio';
+import ApolloClient, { gql } from 'apollo-boost';
+
+const client = new ApolloClient({
+    uri: `${process.env.GRAPHQL_SERVER}`,
+});
 
 interface Branded {
     analyticsInfo: {
@@ -23,9 +28,20 @@ interface Branded {
             publicationUrl?: string;
         };
     };
+    audios: [
+        {
+            playerview: {
+                audioUrl: string;
+                articleId: string;
+                shareDescription: string;
+                shareImageUrl: string;
+                title: string;
+                publicationUrl: string;
+            };
+        }
+    ];
 }
 interface Props {
-    audio: any;
     etag?: string;
     article: Branded;
 }
@@ -40,7 +56,7 @@ function Branded(props: Props) {
             .forEach((audioButton: HTMLAnchorElement) => {
                 audioButton.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    AudioStore.setAudio(props.audio);
+                    AudioStore.setAudio(props.article.audios[0]);
                 });
             });
     }, []);
@@ -85,49 +101,71 @@ function Branded(props: Props) {
 
 Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     const { articleId } = ctx.query;
-    let article: Branded;
-    let audio: any;
+    let data: { brandStories: [Branded] };
 
     try {
-        article = await fetch(
-            `${process.env.PROXY}/brandstories/-/${articleId}/-`
-        ).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                throw new Error(`${res.status}`);
+        const graphRes = await client.query({
+            query: gql`
+            {
+                brandStories(id: ${articleId}) {
+                    analyticsInfo {
+                        audioId
+                    }
+                    articleview {
+                        article {
+                            id
+                            title
+                            intro
+                            content
+                        }
+                    }
+                    audios {
+                        playerview {
+                            articleId
+                            audioUrl
+                            shareDescription
+                            shareImageUrl
+                            title
+                            publicationUrl
+                        }
+                    }
+                }
             }
+            `,
         });
-
-        audio = await fetch(
-            `${process.env.PROXY}/player/audio/${article.analyticsInfo.audioId}/${article.articleview.article.id}`
-        ).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                throw new Error(`${res.status}`);
-            }
-        });
-        audio.playerview.publicationUrl =
-            article.articleview.article.publicationUrl;
-        audio.playerview.articleId = article.articleview.article.id;
+        data = graphRes.data;
     } catch (e) {
         console.error(e);
-        article = {
-            analyticsInfo: {},
-            articleview: {
-                article: {
-                    content: '',
-                    intro: '',
-                    title: '',
+        data = {
+            brandStories: [
+                {
+                    analyticsInfo: {},
+                    articleview: {
+                        article: {
+                            content: '',
+                            intro: '',
+                            title: '',
+                        },
+                    },
+                    audios: [
+                        {
+                            playerview: {
+                                audioUrl: '',
+                                articleId: '',
+                                shareDescription: '',
+                                shareImageUrl: '',
+                                title: '',
+                                publicationUrl: '',
+                            },
+                        },
+                    ],
                 },
-            },
+            ],
         };
     }
     return {
-        audio,
-        etag: `"${md5(JSON.stringify(article))}"`,
-        article,
+        etag: `"${md5(JSON.stringify(data))}"`,
+        article: data.brandStories[0],
     };
 };
 

@@ -7,6 +7,7 @@
             "BASIC_AUTH": "@dev-bnr-basic-auth",
             "ENVIRONMENT": "PREVIEW",
             "GENERATE_ETAGS": "@bnr-preview-generate-etags",
+            "GRAPHQL_SERVER": "@bnr-preview-graphql-server",
             "PROXY": "@bnr-prod-proxy",
             "PREVIEW": "true"
         }
@@ -15,6 +16,7 @@
         "BASIC_AUTH": "@dev-bnr-basic-auth",
         "ENVIRONMENT": "PREVIEW",
         "GENERATE_ETAGS": "@bnr-preview-generate-etags",
+        "GRAPHQL_SERVER": "@bnr-preview-graphql-server",
         "PROXY": "@bnr-prod-proxy",
         "PREVIEW": "true"
     },

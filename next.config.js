@@ -51,6 +51,8 @@ module.exports = withBundleAnalyzer(
             BASIC_AUTH: process.env.BASIC_AUTH,
             ENVIRONMENT: process.env.ENVIRONMENT,
             GENERATE_ETAGS: process.env.GENERATE_ETAGS,
+            GRAPHQL_SERVER: process.env.GRAPHQL_SERVER,
+            NODE_ENV: process.env.NODE_ENV,
             PROXY: process.env.PROXY,
             PREVIEW: process.env.PREVIEW,
         },

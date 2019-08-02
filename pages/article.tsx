@@ -87,6 +87,7 @@ Article.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     const { articleId } = ctx.query;
     let article: Article;
     let audio: any;
+
     try {
         article = await fetch(`${process.env.PROXY}/-/${articleId}/-`).then(
             (res) => {
