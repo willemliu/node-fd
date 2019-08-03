@@ -8,9 +8,13 @@ export default () => {
     const [audio, setAudio] = useState<any>();
     const [paused, setPaused] = useState(true);
     const [progress, setProgress] = useState(0);
+    const [audioPlayerVisible, setAudioPlayerVisible] = useState(false);
+    const [visibleTimeout, setVisibleTimeout] = useState(0);
+
     let audioRef: RefObject<HTMLAudioElement> = React.createRef();
 
     const seek = (e: React.MouseEvent) => {
+        resetAudioPlayerVisibleTimeout();
         if (audioRef && audioRef.current) {
             const audioEl = audioRef.current;
             var percent =
@@ -60,6 +64,18 @@ export default () => {
         }
     });
 
+    const showAudioPlayer = () => {
+        setAudioPlayerVisible(true);
+        setVisibleTimeout(setTimeout(() => setAudioPlayerVisible(false), 3000));
+    };
+
+    const resetAudioPlayerVisibleTimeout = () => {
+        if (visibleTimeout) {
+            clearTimeout(visibleTimeout);
+        }
+        setVisibleTimeout(setTimeout(() => setAudioPlayerVisible(false), 3000));
+    };
+
     const handleClick = () => {
         if (paused) {
             setPaused(false);
@@ -69,36 +85,49 @@ export default () => {
     };
 
     return (
-        <StyledAudio>
+        <StyledAudio className={audioPlayerVisible ? '' : 'hidden'}>
             <audio
                 ref={audioRef}
                 src={audio ? audio.playerview.audioUrl : null}
             />
-            {audio ? (
-                <>
-                    <div>
-                        <img src={audio.playerview.shareImageUrl} />
-                        <Link
-                            href={`/podcastArticle?articleId=${audio.playerview.articleId}`}
-                            as={audio.playerview.publicationUrl}
-                            passHref={true}
-                        >
-                            <a>
-                                <h2>{audio.playerview.title}</h2>
-                                <p>{audio.playerview.shareDescription}</p>
-                            </a>
-                        </Link>
-                        <div onClick={handleClick}>
-                            <button
-                                className={`media-button${
-                                    paused ? '' : ' pause'
-                                }`}
-                            ></button>
-                        </div>
-                    </div>
-                    <progress max={100} value={progress} onClick={seek} />
-                </>
-            ) : null}
+            {audio
+                ? [
+                      <>
+                          <div
+                              onMouseMove={resetAudioPlayerVisibleTimeout}
+                              onClick={resetAudioPlayerVisibleTimeout}
+                          >
+                              <img src={audio.playerview.shareImageUrl} />
+                              <Link
+                                  href={`/podcastArticle?articleId=${audio.playerview.articleId}`}
+                                  as={audio.playerview.publicationUrl}
+                                  passHref={true}
+                              >
+                                  <a>
+                                      <h2>{audio.playerview.title}</h2>
+                                      <p>{audio.playerview.shareDescription}</p>
+                                  </a>
+                              </Link>
+                              <div onClick={handleClick}>
+                                  <button
+                                      className={`media-button${
+                                          paused ? '' : ' pause'
+                                      }`}
+                                  ></button>
+                              </div>
+                          </div>
+                          <progress
+                              max={100}
+                              value={progress}
+                              onClick={seek}
+                              onMouseMove={resetAudioPlayerVisibleTimeout}
+                          />
+                      </>,
+                      audioPlayerVisible ? null : (
+                          <i className="wave-icon" onClick={showAudioPlayer} />
+                      ),
+                  ]
+                : null}
         </StyledAudio>
     );
 };
@@ -200,6 +229,51 @@ const StyledAudio = styled.div`
 
         &:hover {
             border-color: transparent transparent transparent #ffd200;
+        }
+    }
+
+    &.hidden {
+        > div,
+        progress {
+            display: none;
+        }
+    }
+
+    .wave-icon {
+        cursor: pointer;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        width: 60px;
+        height: 60px;
+        background-color: black;
+        // border: 5px solid darken(pink, 5);
+        border-radius: 50%;
+        overflow: hidden;
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            width: 300%;
+            height: 300%;
+            position: absolute;
+            top: 60%;
+            left: -100%;
+            background-color: rgba(255, 210, 0, 1);
+            border-radius: 40% 45%;
+            animation: wave 5s linear infinite;
+        }
+        &:after {
+            background-color: rgba(255, 210, 0, 0.5);
+            animation: wave 6.5s linear infinite;
+        }
+    }
+    @keyframes wave {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
         }
     }
 `;

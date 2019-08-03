@@ -51,6 +51,32 @@ function Branded(props: Props) {
     const { articleId, section, subSection, title } = router.query;
 
     useEffect(() => {
+        // Eager loading the audio URL. Subsequent requests are then cached in memory resulting in instant load.
+        client.query({
+            query: gql`
+            {
+                audios(articleId: ${parseInt(
+                    articleId as string,
+                    10
+                )}, audioId: ${parseInt(
+                props.article.analyticsInfo.audioId as string,
+                10
+            )}) {
+                    playerview {
+                        articleId
+                        audioUrl
+                        shareDescription
+                        shareImageUrl
+                        title
+                        publicationUrl
+                    }
+                }
+            }
+            `,
+        });
+    }, []);
+
+    useEffect(() => {
         [].slice
             .call(document.querySelectorAll('.article-audio-button'))
             .forEach((audioButton: HTMLAnchorElement) => {
