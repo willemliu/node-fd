@@ -28,7 +28,7 @@ interface Branded {
             publicationUrl?: string;
         };
     };
-    audios: [
+    audios?: [
         {
             playerview: {
                 audioUrl: string;
@@ -56,7 +56,32 @@ function Branded(props: Props) {
             .forEach((audioButton: HTMLAnchorElement) => {
                 audioButton.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    AudioStore.setAudio(props.article.audios[0]);
+                    const graphRes = await client.query({
+                        query: gql`
+                        {
+                            audios(articleId: ${parseInt(
+                                articleId as string,
+                                10
+                            )}, audioId: ${parseInt(
+                            props.article.analyticsInfo.audioId as string,
+                            10
+                        )}) {
+                                playerview {
+                                    articleId
+                                    audioUrl
+                                    shareDescription
+                                    shareImageUrl
+                                    title
+                                    publicationUrl
+                                }
+                            }
+                        }
+                        `,
+                    });
+                    const audio = graphRes.data.audios[0];
+                    AudioStore.setAudio(audio);
+
+                    // AudioStore.setAudio(props.article.audios[0]);
                 });
             });
     }, []);
@@ -119,16 +144,6 @@ Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
                             content
                         }
                     }
-                    audios {
-                        playerview {
-                            articleId
-                            audioUrl
-                            shareDescription
-                            shareImageUrl
-                            title
-                            publicationUrl
-                        }
-                    }
                 }
             }
             `,
@@ -147,18 +162,6 @@ Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
                             title: '',
                         },
                     },
-                    audios: [
-                        {
-                            playerview: {
-                                audioUrl: '',
-                                articleId: '',
-                                shareDescription: '',
-                                shareImageUrl: '',
-                                title: '',
-                                publicationUrl: '',
-                            },
-                        },
-                    ],
                 },
             ],
         };

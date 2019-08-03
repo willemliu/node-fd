@@ -13,6 +13,8 @@ export async function audios(parent: any, args: any, context: any, info: any) {
     json.playerview.publicationUrl = parent
         ? parent.articleview.article.publicationUrl
         : '';
-    json.playerview.articleId = parent ? parent.articleview.article.id : '';
+    json.playerview.articleId = parent
+        ? parent.articleview.article.id
+        : args.articleId;
     return [json];
 }
