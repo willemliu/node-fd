@@ -5,6 +5,7 @@
     "build": {
         "env": {
             "BASIC_AUTH": "@dev-bnr-basic-auth",
+            "ENGINE_API_KEY": "@bnr-preview-apollo-engine-api-key",
             "ENVIRONMENT": "PREVIEW",
             "GENERATE_ETAGS": "@bnr-preview-generate-etags",
             "GRAPHQL_SERVER": "@bnr-preview-graphql-server",
@@ -14,6 +15,7 @@
     },
     "env": {
         "BASIC_AUTH": "@dev-bnr-basic-auth",
+        "ENGINE_API_KEY": "@bnr-preview-apollo-engine-api-key",
         "ENVIRONMENT": "PREVIEW",
         "GENERATE_ETAGS": "@bnr-preview-generate-etags",
         "GRAPHQL_SERVER": "@bnr-preview-graphql-server",

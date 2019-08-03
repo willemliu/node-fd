@@ -49,6 +49,7 @@ module.exports = withBundleAnalyzer(
         },
         env: {
             BASIC_AUTH: process.env.BASIC_AUTH,
+            ENGINE_API_KEY: process.env.ENGINE_API_KEY,
             ENVIRONMENT: process.env.ENVIRONMENT,
             GENERATE_ETAGS: process.env.GENERATE_ETAGS,
             GRAPHQL_SERVER: process.env.GRAPHQL_SERVER,

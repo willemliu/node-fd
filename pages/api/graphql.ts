@@ -25,6 +25,9 @@ const apolloServer = new ApolloServer({
     resolvers,
     introspection: notProduction,
     playground: notProduction,
+    engine: {
+        apiKey: process.env.ENGINE_API_KEY,
+    },
 });
 
 export const config = {
