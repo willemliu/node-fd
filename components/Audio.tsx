@@ -66,14 +66,14 @@ export default () => {
 
     const showAudioPlayer = () => {
         setAudioPlayerVisible(true);
-        setVisibleTimeout(setTimeout(() => setAudioPlayerVisible(false), 3000));
+        setVisibleTimeout(setTimeout(() => setAudioPlayerVisible(false), 5000));
     };
 
     const resetAudioPlayerVisibleTimeout = () => {
         if (visibleTimeout) {
             clearTimeout(visibleTimeout);
         }
-        setVisibleTimeout(setTimeout(() => setAudioPlayerVisible(false), 3000));
+        setVisibleTimeout(setTimeout(() => setAudioPlayerVisible(false), 5000));
     };
 
     const handleClick = () => {
