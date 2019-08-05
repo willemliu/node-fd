@@ -8,7 +8,6 @@
             "ENGINE_API_KEY": "@bnr-prod-apollo-engine-api-key",
             "GENERATE_ETAGS": "@bnr-prod-generate-etags",
             "GRAPHQL_SERVER": "@bnr-prod-graphql-server",
-            "NODE_ENV": "@bnr-prod-node-env",
             "PROXY": "@bnr-prod-proxy"
         }
     },
@@ -17,7 +16,6 @@
         "ENGINE_API_KEY": "@bnr-prod-apollo-engine-api-key",
         "GENERATE_ETAGS": "@bnr-prod-generate-etags",
         "GRAPHQL_SERVER": "@bnr-prod-graphql-server",
-        "NODE_ENV": "@bnr-prod-node-env",
         "PROXY": "@bnr-prod-proxy"
     },
     "routes": [
