@@ -1,4 +1,4 @@
-export const typeDefs = `
+export const storyTypeDefs = `
 """
 Story object
 """

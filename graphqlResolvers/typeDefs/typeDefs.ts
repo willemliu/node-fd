@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-micro';
-import { typeDefs as storyTypeDefs } from './storyTypeDefs';
-import { typeDefs as sectionTypeDefs } from './sectionTypeDefs';
+import { storyTypeDefs } from './storyTypeDefs';
+import { sectionTypeDefs } from './sectionTypeDefs';
 
 export const typeDefs = gql`
     type Query {
