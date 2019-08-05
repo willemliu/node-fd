@@ -8,9 +8,17 @@ import LatestPodcastListComponent from '../components/LatestPodcastListComponent
 import BrandedPodcastListComponent from '../components/BrandedPodcastListComponent';
 import TopPodcastListComponent from '../components/TopPodcastListComponent';
 import SpecialsListComponent from '../components/SpecialsListComponent';
-import { encode } from 'base-64';
 import md5 from 'md5';
 import { canonical } from '../utils/canonical';
+import ApolloClient, { gql } from 'apollo-boost';
+
+const client = new ApolloClient({
+    uri: `${process.env.GRAPHQL_SERVER}`,
+});
+
+client.defaultOptions.watchQuery = {
+    fetchPolicy: 'cache-and-network',
+};
 
 interface Home {
     newsFragmentsModel: {
@@ -82,21 +90,109 @@ function BNR(props: Props) {
 BNR.getInitialProps = async (): Promise<Props> => {
     let home: Home;
     try {
-        // home = await fetch(
-        //     `${process.env.PROXY}?url=https://acc.bnr.nl/?cookieconsent=bypass`
-        // ).then((res) => res.json());
-
-        home = await fetch(
-            process.env.PROXY
-                ? process.env.PROXY
-                : 'https://xz4on0khc6.execute-api.eu-west-1.amazonaws.com/dev'
-        ).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                throw new Error(`${res.status}`);
-            }
+        const graphRes = await client.query({
+            query: gql`
+                {
+                    home {
+                        editorsPickModel {
+                            teasers {
+                                id
+                                title
+                                publicationUrl
+                                durationInMinutes
+                                picture {
+                                    imageBaseUrl
+                                    imageUrlSmall
+                                    imageUrlMedium
+                                    imageUrlLarge
+                                }
+                            }
+                        }
+                        specialTeasersModel {
+                            teasers {
+                                id
+                                title
+                                publicationUrl
+                                durationInMinutes
+                                picture {
+                                    imageBaseUrl
+                                    imageUrlSmall
+                                    imageUrlMedium
+                                    imageUrlLarge
+                                }
+                            }
+                        }
+                        brandstoriesTeaserModel {
+                            teasers {
+                                id
+                                title
+                                publicationUrl
+                                durationInMinutes
+                                picture {
+                                    imageBaseUrl
+                                    imageUrlSmall
+                                    imageUrlMedium
+                                    imageUrlLarge
+                                }
+                            }
+                        }
+                        newsFragmentsModel {
+                            teaserFragment1 {
+                                id
+                                title
+                                publicationUrl
+                                durationInMinutes
+                                picture {
+                                    imageBaseUrl
+                                    imageUrlSmall
+                                    imageUrlMedium
+                                    imageUrlLarge
+                                }
+                            }
+                            teaserFragment2 {
+                                id
+                                title
+                                publicationUrl
+                                durationInMinutes
+                                picture {
+                                    imageBaseUrl
+                                    imageUrlSmall
+                                    imageUrlMedium
+                                    imageUrlLarge
+                                }
+                            }
+                            teaserFragment3 {
+                                id
+                                title
+                                publicationUrl
+                                durationInMinutes
+                                picture {
+                                    imageBaseUrl
+                                    imageUrlSmall
+                                    imageUrlMedium
+                                    imageUrlLarge
+                                }
+                            }
+                        }
+                        homeLatestPodcastModel {
+                            teasers {
+                                id
+                                title
+                                publicationUrl
+                                durationInMinutes
+                                picture {
+                                    imageBaseUrl
+                                    imageUrlSmall
+                                    imageUrlMedium
+                                    imageUrlLarge
+                                }
+                            }
+                        }
+                    }
+                }
+            `,
         });
+        home = graphRes.data.home;
     } catch (e) {
         console.error(e);
         home = {

@@ -15,6 +15,10 @@ const client = new ApolloClient({
     uri: `${process.env.GRAPHQL_SERVER}`,
 });
 
+client.defaultOptions.watchQuery = {
+    fetchPolicy: 'cache-and-network',
+};
+
 interface Branded {
     analyticsInfo: {
         audioId?: string;
@@ -53,6 +57,7 @@ function Branded(props: Props) {
     useEffect(() => {
         // Eager loading the audio URL. Subsequent requests are then cached in memory resulting in instant load.
         client.query({
+            fetchPolicy: 'cache-first',
             query: gql`
             {
                 audios(articleId: ${parseInt(

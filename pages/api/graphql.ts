@@ -4,7 +4,8 @@ import { ApolloServer } from 'apollo-server-micro';
 import { audios } from '../../graphqlResolvers/audios';
 import { articles } from '../../graphqlResolvers/articles';
 import { brandStories } from '../../graphqlResolvers/brandStories';
-import { GraphQLTypeDefs as typeDefs } from '../../graphqlResolvers/GraphQLTypeDefs';
+import { home } from '../../graphqlResolvers/home';
+import { typeDefs } from '../../graphqlResolvers/typeDefs/typeDefs';
 
 const cors = Cors({ allowMethods: ['GET', 'HEAD'] });
 
@@ -13,13 +14,16 @@ const resolvers = {
         articles,
         audios,
         brandStories,
+        home,
     },
     Story: {
         audios,
     },
 };
+
 const notProduction =
     typeof process.env.ENVIRONMENT == 'undefined' ? false : true;
+
 const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
