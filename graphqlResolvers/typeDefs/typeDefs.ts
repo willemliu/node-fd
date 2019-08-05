@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-micro';
 import { storyTypeDefs } from './storyTypeDefs';
 import { sectionTypeDefs } from './sectionTypeDefs';
+import { audioTypeDefs } from './audioTypeDefs';
 
 export const typeDefs = gql`
     type Query {
@@ -21,6 +22,8 @@ export const typeDefs = gql`
         """
         brandStories(id: ID!): [Story!]!
     }
+
+    ${audioTypeDefs}
 
     ${storyTypeDefs}
 
