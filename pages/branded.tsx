@@ -9,15 +9,8 @@ import md5 from 'md5';
 import { canonical } from '../utils/canonical';
 import { useEffect } from 'react';
 import AudioStore from '../stores/Audio';
-import ApolloClient, { gql } from 'apollo-boost';
-
-const client = new ApolloClient({
-    uri: `${process.env.GRAPHQL_SERVER}`,
-});
-
-client.defaultOptions.watchQuery = {
-    fetchPolicy: 'cache-and-network',
-};
+import { gql } from 'apollo-boost';
+import { apolloClient } from '../graphql/client';
 
 interface Branded {
     analyticsInfo: {
@@ -56,7 +49,7 @@ function Branded(props: Props) {
 
     useEffect(() => {
         // Eager loading the audio URL. Subsequent requests are then cached in memory resulting in instant load.
-        client.query({
+        apolloClient.query({
             fetchPolicy: 'cache-first',
             query: gql`
             {
@@ -87,7 +80,7 @@ function Branded(props: Props) {
             .forEach((audioButton: HTMLAnchorElement) => {
                 audioButton.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    const graphRes = await client.query({
+                    const graphRes = await apolloClient.query({
                         query: gql`
                         {
                             audios(articleId: ${parseInt(
@@ -160,7 +153,7 @@ Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
     let data: { brandStories: [Branded] };
 
     try {
-        const graphRes = await client.query({
+        const graphRes = await apolloClient.query({
             query: gql`
             {
                 brandStories(id: ${articleId}) {
