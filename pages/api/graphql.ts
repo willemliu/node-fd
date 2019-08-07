@@ -42,7 +42,12 @@ const apolloServer = new ApolloServer({
     engine: {
         apiKey: process.env.ENGINE_API_KEY,
     },
-    validationRules: [ComplexityLimitRule, depthLimit(10)],
+    validationRules: [
+        ComplexityLimitRule,
+        depthLimit(10, { ignore: [] }, (depths: number) => {
+            console.log('query depths:', JSON.stringify(depths, null, 2));
+        }),
+    ],
 });
 
 export const config = {
