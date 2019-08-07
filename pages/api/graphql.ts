@@ -6,6 +6,16 @@ import { articles } from '../../graphql/articles';
 import { brandStories } from '../../graphql/brandStories';
 import { home } from '../../graphql/home';
 import { typeDefs } from '../../graphql/typeDefs/typeDefs';
+import depthLimit from 'graphql-depth-limit';
+import { createComplexityLimitRule } from 'graphql-validation-complexity';
+
+const ComplexityLimitRule = createComplexityLimitRule(1000, {
+    onCost: (cost: number) => {
+        console.log('query cost:', cost);
+    },
+    formatErrorMessage: (cost: number) =>
+        `query with cost ${cost} exceeds complexity limit`,
+});
 
 const cors = Cors({ allowMethods: ['GET', 'HEAD'] });
 
@@ -32,6 +42,7 @@ const apolloServer = new ApolloServer({
     engine: {
         apiKey: process.env.ENGINE_API_KEY,
     },
+    validationRules: [ComplexityLimitRule, depthLimit(10)],
 });
 
 export const config = {

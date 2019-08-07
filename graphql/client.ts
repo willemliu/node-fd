@@ -8,6 +8,7 @@ const apolloClient = new ApolloClient({
 
 apolloClient.defaultOptions.watchQuery = {
     fetchPolicy: 'cache-and-network',
+    errorPolicy: 'all',
 };
 
 export { apolloClient };
