@@ -7,6 +7,8 @@ import { GlobalStyle } from '../styles/Global';
 import Router from 'next/router';
 import Loader from '../components/Loader';
 import Audio from '../components/Audio';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { apolloClient } from '../graphql/client';
 
 promisePolyfill.polyfill();
 
@@ -60,10 +62,12 @@ export default class PersistentApp extends App {
 
         return (
             <Container>
-                <GlobalStyle />
-                {this.state.loading ? <Loader /> : ''}
-                <Component {...pageProps} />
-                <Audio />
+                <ApolloProvider client={apolloClient}>
+                    <GlobalStyle />
+                    {this.state.loading ? <Loader /> : ''}
+                    <Component {...pageProps} />
+                    <Audio />
+                </ApolloProvider>
             </Container>
         );
     }

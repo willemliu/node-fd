@@ -24,6 +24,7 @@
     "author": "Willem Liu",
     "license": "ISC",
     "dependencies": {
+        "@apollo/react-hooks": "^3.0.0",
         "@babel/plugin-proposal-decorators": "^7.4.4",
         "@next/bundle-analyzer": "^8.1.0",
         "@types/base-64": "^0.1.3",

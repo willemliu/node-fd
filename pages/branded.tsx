@@ -10,6 +10,7 @@ import { canonical } from '../utils/canonical';
 import { useEffect } from 'react';
 import AudioStore from '../stores/Audio';
 import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 import { apolloClient } from '../graphql/client';
 
 interface Branded {
@@ -46,69 +47,41 @@ interface Props {
 function Branded(props: Props) {
     const router = useRouter();
     const { articleId, section, subSection, title } = router.query;
-
-    useEffect(() => {
-        // Eager loading the audio URL. Subsequent requests are then cached in memory resulting in instant load.
-        apolloClient.query({
-            fetchPolicy: 'cache-first',
-            query: gql`
-            {
-                audios(articleId: ${parseInt(
-                    articleId as string,
-                    10
-                )}, audioId: ${parseInt(
-                props.article.analyticsInfo.audioId as string,
-                10
-            )}) {
-                    playerview {
-                        articleId
-                        audioUrl
-                        shareDescription
-                        shareImageUrl
-                        title
-                        publicationUrl
-                    }
-                }
+    const { loading, data } = useQuery(
+        gql`
+    {
+        audios(articleId: ${parseInt(
+            articleId as string,
+            10
+        )}, audioId: ${parseInt(
+            props.article.analyticsInfo.audioId as string,
+            10
+        )}) {
+            playerview {
+                articleId
+                audioUrl
+                shareDescription
+                shareImageUrl
+                title
+                publicationUrl
             }
-            `,
-        });
-    }, []);
+        }
+    }
+    `
+    );
 
     useEffect(() => {
-        [].slice
-            .call(document.querySelectorAll('.article-audio-button'))
-            .forEach((audioButton: HTMLAnchorElement) => {
-                audioButton.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    const graphRes = await apolloClient.query({
-                        query: gql`
-                        {
-                            audios(articleId: ${parseInt(
-                                articleId as string,
-                                10
-                            )}, audioId: ${parseInt(
-                            props.article.analyticsInfo.audioId as string,
-                            10
-                        )}) {
-                                playerview {
-                                    articleId
-                                    audioUrl
-                                    shareDescription
-                                    shareImageUrl
-                                    title
-                                    publicationUrl
-                                }
-                            }
-                        }
-                        `,
+        if (!loading) {
+            [].slice
+                .call(document.querySelectorAll('.article-audio-button'))
+                .forEach((audioButton: HTMLAnchorElement) => {
+                    audioButton.addEventListener('click', async (e) => {
+                        e.preventDefault();
+                        AudioStore.setAudio(data.audios[0]);
                     });
-                    const audio = graphRes.data.audios[0];
-                    AudioStore.setAudio(audio);
-
-                    // AudioStore.setAudio(props.article.audios[0]);
                 });
-            });
-    }, []);
+        }
+    }, [data]);
 
     return (
         <PageStyle>

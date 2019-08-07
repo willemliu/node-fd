@@ -90,44 +90,42 @@ export default () => {
                 ref={audioRef}
                 src={audio ? audio.playerview.audioUrl : null}
             />
-            {audio
-                ? [
-                      <>
-                          <div
-                              onMouseMove={resetAudioPlayerVisibleTimeout}
-                              onClick={resetAudioPlayerVisibleTimeout}
-                          >
-                              <img src={audio.playerview.shareImageUrl} />
-                              <Link
-                                  href={`/podcastArticle?articleId=${audio.playerview.articleId}`}
-                                  as={audio.playerview.publicationUrl}
-                                  passHref={true}
-                              >
-                                  <a>
-                                      <h2>{audio.playerview.title}</h2>
-                                      <p>{audio.playerview.shareDescription}</p>
-                                  </a>
-                              </Link>
-                              <div onClick={handleClick}>
-                                  <button
-                                      className={`media-button${
-                                          paused ? '' : ' pause'
-                                      }`}
-                                  ></button>
-                              </div>
-                          </div>
-                          <progress
-                              max={100}
-                              value={progress}
-                              onClick={seek}
-                              onMouseMove={resetAudioPlayerVisibleTimeout}
-                          />
-                      </>,
-                      audioPlayerVisible ? null : (
-                          <i className="wave-icon" onClick={showAudioPlayer} />
-                      ),
-                  ]
-                : null}
+            {audio ? (
+                <>
+                    <div
+                        onMouseMove={resetAudioPlayerVisibleTimeout}
+                        onClick={resetAudioPlayerVisibleTimeout}
+                    >
+                        <img src={audio.playerview.shareImageUrl} />
+                        <Link
+                            href={`/podcastArticle?articleId=${audio.playerview.articleId}`}
+                            as={audio.playerview.publicationUrl}
+                            passHref={true}
+                        >
+                            <a>
+                                <h2>{audio.playerview.title}</h2>
+                                <p>{audio.playerview.shareDescription}</p>
+                            </a>
+                        </Link>
+                        <div onClick={handleClick}>
+                            <button
+                                className={`media-button${
+                                    paused ? '' : ' pause'
+                                }`}
+                            ></button>
+                        </div>
+                    </div>
+                    <progress
+                        max={100}
+                        value={progress}
+                        onClick={seek}
+                        onMouseMove={resetAudioPlayerVisibleTimeout}
+                    />
+                    {audioPlayerVisible ? null : (
+                        <i className="wave-icon" onClick={showAudioPlayer} />
+                    )}
+                </>
+            ) : null}
         </StyledAudio>
     );
 };
