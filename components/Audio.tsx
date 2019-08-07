@@ -11,7 +11,7 @@ export default () => {
     const [audioPlayerVisible, setAudioPlayerVisible] = useState(false);
     const [visibleTimeout, setVisibleTimeout] = useState(0);
 
-    let audioRef: RefObject<HTMLAudioElement> = React.createRef();
+    let audioRef: RefObject<HTMLVideoElement> = React.createRef();
 
     const seek = (e: React.MouseEvent) => {
         resetAudioPlayerVisibleTimeout();
@@ -86,7 +86,7 @@ export default () => {
 
     return (
         <StyledAudio className={audioPlayerVisible ? '' : 'hidden'}>
-            <audio
+            <video
                 ref={audioRef}
                 src={audio ? audio.playerview.audioUrl : null}
             />
@@ -137,6 +137,12 @@ const StyledAudio = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
+
+    video,
+    audio {
+        display: none;
+    }
+
     > div {
         height: 50px;
         background-color: rgba(0, 0, 0, 0.5);
