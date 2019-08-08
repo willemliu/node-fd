@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Branded podcast list component should render branded podcasts correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-ifAKCX btOyHJ"
+  >
+    <h2
+      class="sc-bdVaJa EINmU"
+    >
+      Branded podcasts
+    </h2>
+    <ul>
+      <li
+        class="ripple"
+      >
+        <a
+          class="sc-bwzfXH djPqxG"
+          href="publication url"
+        >
+          <figure>
+            <picture>
+              <source
+                media="(max-width:640px)"
+                srcset="small image url"
+              />
+              <source
+                media="(max-width:860px)"
+                srcset="medium image url"
+              />
+              <source
+                media="(min-width:861px)"
+                srcset="large image url"
+              />
+              <img
+                alt="title of the podcast"
+                src="base image url"
+              />
+            </picture>
+          </figure>
+          <section
+            class="sc-htpNat gpUwGh"
+          >
+            <h3>
+              title of the podcast
+            </h3>
+            <time>
+              Duur: 3 min
+            </time>
+            <h3>
+              program title
+            </h3>
+          </section>
+        </a>
+      </li>
+      <li
+        class="ripple"
+      >
+        <a
+          class="sc-bwzfXH djPqxG"
+          href="publication url2"
+        >
+          <figure>
+            <picture>
+              <source
+                media="(max-width:640px)"
+                srcset="small image url2"
+              />
+              <source
+                media="(max-width:860px)"
+                srcset="medium image url2"
+              />
+              <source
+                media="(min-width:861px)"
+                srcset="large image url2"
+              />
+              <img
+                alt="title of the podcast2"
+                src="base image url2"
+              />
+            </picture>
+          </figure>
+          <section
+            class="sc-htpNat gpUwGh"
+          >
+            <h3>
+              title of the podcast2
+            </h3>
+            <time>
+              Duur: 4 min
+            </time>
+            <h3>
+              program title2
+            </h3>
+          </section>
+        </a>
+      </li>
+    </ul>
+  </section>
+</DocumentFragment>
+`;
