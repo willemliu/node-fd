@@ -80,6 +80,22 @@ module.exports = withBundleAnalyzer(
             //     config.optimization.splitChunks.cacheGroups.default = chunkingDefaults;
             //     config.optimization.splitChunks.minChunks = 2;
             // }
+            if (!options.isServer) {
+                const cacheGroups = config.optimization.splitChunks.cacheGroups;
+                delete cacheGroups.react;
+                cacheGroups.default = false;
+                cacheGroups.vendors = {
+                    name: 'vendors',
+                    test: /[\\/](node_modules|packages)[\\/]/,
+                    enforce: true,
+                    priority: 20,
+                };
+                cacheGroups.commons = {
+                    name: 'commons',
+                    minChunks: 2,
+                    priority: 10,
+                };
+            }
 
             return config;
         },
