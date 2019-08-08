@@ -1,10 +1,10 @@
 import Cors from 'micro-cors';
 import 'fetch-everywhere';
 import { ApolloServer } from 'apollo-server-micro';
-import { audios } from '../../graphql/audios';
-import { articles } from '../../graphql/articles';
-import { brandStories } from '../../graphql/brandStories';
-import { home } from '../../graphql/home';
+import { audios } from '../../graphql/resolvers/audios';
+import { articles } from '../../graphql/resolvers/articles';
+import { brandStories } from '../../graphql/resolvers/brandStories';
+import { home } from '../../graphql/resolvers/home';
 import { typeDefs } from '../../graphql/typeDefs/typeDefs';
 import depthLimit from 'graphql-depth-limit';
 import { createComplexityLimitRule } from 'graphql-validation-complexity';
