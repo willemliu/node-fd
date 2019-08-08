@@ -72,14 +72,14 @@ module.exports = withBundleAnalyzer(
             };
             // config.resolve.alias['etag'] = require.resolve('etag');
             // config.resolve.alias['node-fetch'] = require.resolve('node-fetch');
-            if (!options.isServer) {
-                const chunkingDefaults = {
-                    minChunks: 2,
-                    reuseExistingChunk: true,
-                };
-                config.optimization.splitChunks.cacheGroups.default = chunkingDefaults;
-                config.optimization.splitChunks.minChunks = 2;
-            }
+            // if (!options.isServer) {
+            //     const chunkingDefaults = {
+            //         minChunks: 2,
+            //         reuseExistingChunk: true,
+            //     };
+            //     config.optimization.splitChunks.cacheGroups.default = chunkingDefaults;
+            //     config.optimization.splitChunks.minChunks = 2;
+            // }
 
             return config;
         },
