@@ -56,7 +56,7 @@ module.exports = withBundleAnalyzer(
             PROXY: process.env.PROXY,
             PREVIEW: process.env.PREVIEW,
         },
-        webpack: (config) => {
+        webpack: (config, options) => {
             // this will output your push listener file to .next folder
             // check CopyWebpackPlugin docs if you want to change the destination (e.g. /static or /.next/static)
             config.plugins.push(
@@ -72,6 +72,15 @@ module.exports = withBundleAnalyzer(
             };
             // config.resolve.alias['etag'] = require.resolve('etag');
             // config.resolve.alias['node-fetch'] = require.resolve('node-fetch');
+            if (!options.isServer) {
+                const chunkingDefaults = {
+                    minChunks: 2,
+                    reuseExistingChunk: true,
+                };
+                config.optimization.splitChunks.cacheGroups.default = chunkingDefaults;
+                config.optimization.splitChunks.minChunks = 2;
+            }
+
             return config;
         },
     })
