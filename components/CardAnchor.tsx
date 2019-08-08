@@ -1,3 +1,4 @@
+import React from 'react';
 import { CardSection, StyledAnchor } from '../styles/Bnr';
 import { PureComponent } from 'react';
 

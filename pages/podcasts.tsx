@@ -1,3 +1,4 @@
+import React from 'react';
 import 'fetch-everywhere';
 import Head from 'next/head';
 import { PageStyle } from '../styles/Page';

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { StyledH2 } from '../styles/Bnr';
 import { ripple } from '../utils/ripple';
@@ -32,7 +33,7 @@ export default (props: Props) => {
                                 passHref={true}
                                 prefetch={true}
                             >
-                                <CardAnchor item={item} />
+                                <CardAnchor item={item} rel="nofollow" />
                             </Link>
                         </li>
                     );

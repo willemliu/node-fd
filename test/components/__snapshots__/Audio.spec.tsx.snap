@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Audio component should handle play/pause correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdVaJa fXSRfh"
+  >
+    <video
+      src="url to audio"
+    />
+    <div>
+      <img
+        src="image url"
+      />
+      <a
+        href="/podcastArticle?articleId=undefined"
+      >
+        <h2>
+          title of the audio
+        </h2>
+        <p>
+          description of the audio
+        </p>
+      </a>
+      <div>
+        <button
+          class="media-button"
+        />
+      </div>
+    </div>
+    <progress
+      max="100"
+      value="0"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Audio component should handle play/pause correctly 2`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdVaJa fXSRfh"
+  >
+    <video
+      src="url to audio"
+    />
+    <div>
+      <img
+        src="image url"
+      />
+      <a
+        href="/podcastArticle?articleId=undefined"
+      >
+        <h2>
+          title of the audio
+        </h2>
+        <p>
+          description of the audio
+        </p>
+      </a>
+      <div>
+        <button
+          class="media-button pause"
+        />
+      </div>
+    </div>
+    <progress
+      max="100"
+      value="0"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Audio component should render correctly initially without data 1`] = `
+<DocumentFragment>
+  <div
+    class="hidden sc-bdVaJa fXSRfh"
+  >
+    <video />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Audio component should render correctly with audio data 1`] = `
+<DocumentFragment>
+  <div
+    class="hidden sc-bdVaJa fXSRfh"
+  >
+    <video
+      src="url to audio"
+    />
+    <div>
+      <img
+        src="image url"
+      />
+      <a
+        href="/podcastArticle?articleId=undefined"
+      >
+        <h2>
+          title of the audio
+        </h2>
+        <p>
+          description of the audio
+        </p>
+      </a>
+      <div>
+        <button
+          class="media-button pause"
+        />
+      </div>
+    </div>
+    <progress
+      max="100"
+      value="0"
+    />
+    <i
+      class="wave-icon"
+    />
+  </div>
+</DocumentFragment>
+`;

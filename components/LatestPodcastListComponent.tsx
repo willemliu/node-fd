@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { StyledH2 } from '../styles/Bnr';
 import { ripple } from '../utils/ripple';

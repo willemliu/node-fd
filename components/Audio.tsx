@@ -1,8 +1,8 @@
+import React from 'react';
 import { useState, useEffect, RefObject } from 'react';
 import AudioStore from '../stores/Audio';
 import styled from 'styled-components';
 import Link from 'next/link';
-import React from 'react';
 
 export default () => {
     const [audio, setAudio] = useState<any>();

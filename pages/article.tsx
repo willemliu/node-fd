@@ -1,3 +1,4 @@
+import React from 'react';
 import 'fetch-everywhere';
 import { PageStyle } from '../styles/Page';
 import { BnrPageStyle, StyledArticle } from '../styles/Bnr';
