@@ -18,7 +18,7 @@
         "lint": "eslint {pages}/**/*",
         "next": "next",
         "start": "npm run dev",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "webpack-bundle-analyzer": "cross-env WEBPACK_BUNDLE_ANALYZER=true NOW_SERVERLESS=false next build"
     },
     "author": "Willem Liu",
