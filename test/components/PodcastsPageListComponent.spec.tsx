@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import BrandedPodcastListComponent from '../../components/BrandedPodcastListComponent';
+import PodcastsPageListComponent from '../../components/PodcastsPageListComponent';
 
-describe('Branded podcast list component', () => {
+describe('Podcasts page list component', () => {
     it('should render branded podcasts correctly', () => {
         const { asFragment } = render(
-            <BrandedPodcastListComponent
-                title="Branded podcasts"
+            <PodcastsPageListComponent
+                title="All Podcasts"
                 items={[
                     {
                         id: 1,

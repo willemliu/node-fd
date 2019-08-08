@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Branded podcast list component should render branded podcasts correctly 1`] = `
+exports[`Top news list component should render branded podcasts correctly 1`] = `
 <DocumentFragment>
   <section
-    class="sc-ifAKCX btOyHJ"
+    class="sc-ifAKCX eNmBBh"
   >
     <h2
       class="sc-bdVaJa EINmU"
     >
-      Branded podcasts
+      Top news
     </h2>
     <ul>
       <li
@@ -17,6 +17,7 @@ exports[`Branded podcast list component should render branded podcasts correctly
         <a
           class="sc-bwzfXH djPqxG"
           href="publication url"
+          rel="nofollow"
         >
           <figure>
             <picture>
@@ -59,6 +60,7 @@ exports[`Branded podcast list component should render branded podcasts correctly
         <a
           class="sc-bwzfXH djPqxG"
           href="publication url2"
+          rel="nofollow"
         >
           <section
             class="sc-htpNat gpUwGh"
