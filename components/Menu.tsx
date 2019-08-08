@@ -18,7 +18,9 @@ export default () => {
     });
     return (
         <StyledHeader>
-            <img src="/static/logo65x104.png" alt="BNR Nieuwsradio" />
+            <Link href="/" as="/" prefetch={true}>
+                <img src="/static/logo65x104.png" alt="BNR Nieuwsradio" />
+            </Link>
             <LinksContainer>
                 <Link href="/" as="/" prefetch={true} passHref={true}>
                     <a
@@ -71,6 +73,7 @@ const StyledHeader = styled.header`
     img {
         height: calc(100% - 0.5rem);
         margin: 0 0.5rem;
+        cursor: pointer;
     }
 
     a {
