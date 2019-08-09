@@ -6,6 +6,7 @@ const url =
     'mongodb+srv://app:' +
     encodeURIComponent(process.env.MONGO_DB_PASS || '') +
     '@cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
+let cachedDb: Db;
 
 export async function validateToken(
     parent: any,
@@ -26,9 +27,15 @@ async function db(token: string) {
         clientCon = await mongoClient.connect(url, {
             useNewUrlParser: true,
         });
-        const db: Db = clientCon.db(dbName);
+        if (cachedDb) {
+            console.log('=> using cached database instance');
+            return Promise.resolve(cachedDb);
+        } else {
+            const db: Db = clientCon.db(dbName);
+            cachedDb = db;
+        }
         // We would do a findOneAndDelete normally. But for development findOne is easier.
-        const cursor = await db.collection(collection).findOne({ token });
+        const cursor = await cachedDb.collection(collection).findOne({ token });
         if (cursor && cursor.token) {
             console.log('token found:', cursor.token);
             result = true;
