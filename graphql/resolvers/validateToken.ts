@@ -59,16 +59,15 @@ async function db(token: string) {
         process.env.MONGO_DB_PASS || ''
     )}@cluster0-ucyju.mongodb.net/testgraphql?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true });
-    client.connect(async (err) => {
-        const collection = client.db('testgraphql').collection('bnr');
-        // perform actions on the collection object
-        const cursor = await collection.findOne({ token });
-        if (cursor && cursor.token) {
-            console.log('token found:', cursor.token);
-            result = true;
-        }
+    await client.connect();
+    const collection = client.db('testgraphql').collection('bnr');
+    // perform actions on the collection object
+    const cursor = await collection.findOne({ token });
+    if (cursor && cursor.token) {
+        console.log('token found:', cursor.token);
+        result = true;
+    }
 
-        client.close();
-    });
+    client.close();
     return result;
 }
