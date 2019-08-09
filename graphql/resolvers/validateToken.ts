@@ -26,6 +26,7 @@ async function db(token: string) {
         // We would do a findOneAndDelete normally. But for development findOne is easier.
         const cursor = await db.collection(collection).findOne({ token });
         if (cursor && cursor.token) {
+            console.log('token found:', cursor.token);
             result = true;
         }
     } catch (e) {
@@ -33,6 +34,7 @@ async function db(token: string) {
         if (clientCon) {
             clientCon.close();
         }
+        console.log('finally false...');
         return result;
     }
 }
