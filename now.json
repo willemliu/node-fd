@@ -19,6 +19,7 @@
         "ENVIRONMENT": "DEV",
         "GENERATE_ETAGS": "@bnr-dev-generate-etags",
         "GRAPHQL_SERVER": "@bnr-dev-graphql-server",
+        "MONGO_DB_PASS": "@bnr-dev-mongo-db-pass",
         "PROXY": "@bnr-dev-proxy"
     },
     "routes": [

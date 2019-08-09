@@ -20,6 +20,7 @@
         "ENVIRONMENT": "PREVIEW",
         "GENERATE_ETAGS": "@bnr-preview-generate-etags",
         "GRAPHQL_SERVER": "@bnr-preview-graphql-server",
+        "MONGO_DB_PASS": "@bnr-dev-mongo-db-pass",
         "PROXY": "@bnr-prod-proxy",
         "PREVIEW": "true"
     },
