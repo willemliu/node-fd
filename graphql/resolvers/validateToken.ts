@@ -3,7 +3,7 @@ const mongoClient = mongodb.MongoClient;
 const dbName = 'bnr';
 const collection = 'tokens';
 const url =
-    'mongodb+srv://app:welkom01@cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
+    'mongodb+srv://cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
 let cachedDb: Db;
 
 export async function validateToken(
@@ -24,6 +24,10 @@ async function db(token: string) {
     try {
         clientCon = await mongoClient.connect(url, {
             useNewUrlParser: true,
+            auth: {
+                password: 'welkom01',
+                user: 'app',
+            },
         });
         if (cachedDb) {
             console.log('=> using cached database instance');
