@@ -21,7 +21,11 @@ async function db(token: string) {
     let result: boolean = false;
     let clientCon;
     try {
-        clientCon = await mongoClient.connect(url, { useNewUrlParser: true });
+        clientCon = await mongoClient.connect(url, {
+            useNewUrlParser: true,
+            ssl: false,
+            autoReconnect: true,
+        });
         const db: Db = clientCon.db(dbName);
         // We would do a findOneAndDelete normally. But for development findOne is easier.
         const cursor = await db.collection(collection).findOne({ token });
