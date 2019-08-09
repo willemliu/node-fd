@@ -1,6 +1,9 @@
 {
     "name": "node-fd",
     "version": "1.0.0",
+    "engines": {
+        "node": "10.x"
+    },
     "description": "POC fd-web",
     "main": "index.js",
     "repository": {
