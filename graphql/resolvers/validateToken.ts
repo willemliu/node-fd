@@ -6,6 +6,7 @@ export async function validateToken(
     context: any,
     info: any
 ) {
+    context.callbackWaitsForEmptyEventLoop = false;
     console.log('validate token', args.token);
     return await db(args.token);
 }
