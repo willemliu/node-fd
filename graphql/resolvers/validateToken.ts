@@ -25,7 +25,7 @@ async function db(token: string) {
         clientCon = await mongoClient.connect(url, {
             useNewUrlParser: true,
             auth: {
-                password: 'welkom01',
+                password: process.env.MONGO_DB_PASS || '',
                 user: 'app',
             },
         });
