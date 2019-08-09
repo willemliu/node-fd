@@ -28,4 +28,11 @@ export const typeDefs = gql`
     ${storyTypeDefs}
 
     ${sectionTypeDefs}
+
+    type Mutation {
+        """
+        Validate one-time-use token. Given token will be invalidated.
+        """
+        validateToken(token: String): Boolean
+    }
 `;

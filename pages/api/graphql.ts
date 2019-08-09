@@ -4,6 +4,7 @@ import { ApolloServer } from 'apollo-server-micro';
 import { audios } from '../../graphql/resolvers/audios';
 import { articles } from '../../graphql/resolvers/articles';
 import { brandStories } from '../../graphql/resolvers/brandStories';
+import { validateToken } from '../../graphql/resolvers/validateToken';
 import { home } from '../../graphql/resolvers/home';
 import { typeDefs } from '../../graphql/typeDefs/typeDefs';
 import depthLimit from 'graphql-depth-limit';
@@ -28,6 +29,9 @@ const resolvers = {
     },
     Story: {
         audios,
+    },
+    Mutation: {
+        validateToken,
     },
 };
 

@@ -53,6 +53,7 @@ module.exports = withBundleAnalyzer(
             ENVIRONMENT: process.env.ENVIRONMENT,
             GENERATE_ETAGS: process.env.GENERATE_ETAGS,
             GRAPHQL_SERVER: process.env.GRAPHQL_SERVER,
+            MONGO_DB_PASS: process.env.MONGO_DB_PASS,
             PROXY: process.env.PROXY,
             PREVIEW: process.env.PREVIEW,
         },

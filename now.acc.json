@@ -9,6 +9,7 @@
             "ENVIRONMENT": "ACC",
             "GENERATE_ETAGS": "@bnr-acc-generate-etags",
             "GRAPHQL_SERVER": "@bnr-acc-graphql-server",
+            "MONGO_DB_PASS": "@bnr-dev-mongo-db-pass",
             "PROXY": "@bnr-acc-proxy"
         }
     },
