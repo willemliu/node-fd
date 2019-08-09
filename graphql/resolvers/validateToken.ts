@@ -4,7 +4,7 @@ const dbName = 'bnr';
 const collection = 'tokens';
 const url =
     'mongodb+srv://cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
-let cachedDb: Db;
+let cachedDb: Db | null;
 
 export async function validateToken(
     parent: any,
@@ -46,6 +46,7 @@ async function db(token: string) {
     } finally {
         if (clientCon) {
             clientCon.close();
+            cachedDb = null;
         }
         return result;
     }
