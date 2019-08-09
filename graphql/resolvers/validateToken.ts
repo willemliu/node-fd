@@ -9,7 +9,7 @@ const url = `mongodb://willem_liu:${encodeURIComponent(
 
 export async function validateToken(
     parent: any,
-    args: any,
+    args: { token: string },
     context: any,
     info: any
 ) {
