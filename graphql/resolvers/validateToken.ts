@@ -3,9 +3,7 @@ const mongoClient = mongodb.MongoClient;
 const dbName = 'bnr';
 const collection = 'tokens';
 const url =
-    'mongodb+srv://app:' +
-    encodeURIComponent(process.env.MONGO_DB_PASS || '') +
-    '@cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
+    'mongodb+srv://app:welkom01@cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
 let cachedDb: Db;
 
 export async function validateToken(
