@@ -25,6 +25,10 @@ async function db(token: string) {
             useNewUrlParser: true,
             ssl: false,
             autoReconnect: true,
+            auth: {
+                password: encodeURIComponent(process.env.MONGO_DB_PASS || ''),
+                user: 'willem_liu',
+            },
         });
         const db: Db = clientCon.db(dbName);
         // We would do a findOneAndDelete normally. But for development findOne is easier.
