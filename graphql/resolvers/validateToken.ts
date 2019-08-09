@@ -6,7 +6,6 @@ const collection = 'tokens';
 const url = `mongodb://willem_liu:${encodeURIComponent(
     process.env.MONGO_DB_PASS || ''
 )}@cluster0-shard-00-00-ucyju.mongodb.net:27017,cluster0-shard-00-01-ucyju.mongodb.net:27017,cluster0-shard-00-02-ucyju.mongodb.net:27017/test?replicaSet=Cluster0-shard-0&ssl=true&authSource=admin`;
-
 export async function validateToken(
     parent: any,
     args: { token: string },
@@ -18,6 +17,7 @@ export async function validateToken(
 }
 
 async function db(token: string) {
+    console.log(url);
     let result: boolean = false;
     let clientCon;
     try {
