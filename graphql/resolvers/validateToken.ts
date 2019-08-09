@@ -14,7 +14,9 @@ async function db(token: string) {
     const mongoClient = mongodb.MongoClient;
     const dbName = 'bnr';
     const collection = 'tokens';
-    const url = `mongodb+srv://willem_liu:${encodeURIComponent(
+    const url = `mongodb+srv://${encodeURIComponent(
+        'willem_liu@hotmail.com'
+    )}:${encodeURIComponent(
         process.env.MONGO_DB_PASS || ''
     )}@cluster0-ucyju.mongodb.net/testgraphql?retryWrites=true&w=majority`;
     console.log(url);
@@ -26,8 +28,8 @@ async function db(token: string) {
             ssl: false,
             autoReconnect: true,
             auth: {
-                password: encodeURIComponent(process.env.MONGO_DB_PASS || ''),
-                user: 'willem_liu',
+                password: process.env.MONGO_DB_PASS || '',
+                user: 'willem_liu@hotmail.com',
             },
         });
         const db: Db = clientCon.db(dbName);
