@@ -1,4 +1,11 @@
 import mongodb, { Db } from 'mongodb';
+const mongoClient = mongodb.MongoClient;
+const dbName = 'bnr';
+const collection = 'tokens';
+const url =
+    'mongodb+srv://app:' +
+    encodeURIComponent(process.env.MONGO_DB_PASS || '') +
+    '@cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
 
 export async function validateToken(
     parent: any,
@@ -12,13 +19,6 @@ export async function validateToken(
 }
 
 async function db(token: string) {
-    const mongoClient = mongodb.MongoClient;
-    const dbName = 'bnr';
-    const collection = 'tokens';
-    const url =
-        'mongodb+srv://app:' +
-        encodeURIComponent(process.env.MONGO_DB_PASS || '') +
-        '@cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority';
     console.log(url);
     let result: boolean = false;
     let clientCon;
