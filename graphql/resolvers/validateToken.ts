@@ -29,7 +29,6 @@ async function db(token: string) {
         });
         if (cachedDb) {
             console.log('=> using cached database instance');
-            return Promise.resolve(cachedDb);
         } else {
             const db: Db = clientCon.db(dbName);
             cachedDb = db;
