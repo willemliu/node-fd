@@ -30,6 +30,7 @@ async function db(token: string) {
             result = true;
         }
     } catch (e) {
+        console.error(e);
     } finally {
         if (clientCon) {
             clientCon.close();
