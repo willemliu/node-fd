@@ -16,7 +16,7 @@ async function db(token: string) {
     const collection = 'tokens';
     const url = `mongodb+srv://willem_liu:${encodeURIComponent(
         process.env.MONGO_DB_PASS || ''
-    )}@cluster0-shard-00-00-ucyju.mongodb.net:27017,cluster0-shard-00-01-ucyju.mongodb.net:27017,cluster0-shard-00-02-ucyju.mongodb.net:27017/test?replicaSet=Cluster0-shard-0&ssl=false&authSource=admin`;
+    )}@cluster0-ucyju.mongodb.net/test?retryWrites=true&w=majority`;
     console.log(url);
     let result: boolean = false;
     let clientCon;
