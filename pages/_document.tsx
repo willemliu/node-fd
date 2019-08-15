@@ -29,7 +29,7 @@ export default class MyDocument extends Document<any> {
             }
         }
 
-        if (!authorized && ctx.res) {
+        if (process.env.BASIC_AUTH && !authorized && ctx.res) {
             denied(ctx.res);
             return;
         }
