@@ -1,6 +1,6 @@
 import Cors from 'micro-cors';
 import 'fetch-everywhere';
-import { ApolloServer, AuthenticationError } from 'apollo-server-micro';
+import { ApolloServer } from 'apollo-server-micro';
 import { audios } from '../../graphql/resolvers/audios';
 import { articles } from '../../graphql/resolvers/articles';
 import { brandStories } from '../../graphql/resolvers/brandStories';
@@ -42,8 +42,8 @@ const notProduction =
 const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection: notProduction,
-    playground: notProduction,
+    introspection: notProduction && !process.env.BASIC_AUTH,
+    playground: notProduction || !!process.env.BASIC_AUTH,
     engine: {
         apiKey: process.env.ENGINE_API_KEY,
     },
