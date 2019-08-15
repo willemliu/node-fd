@@ -1,10 +1,4 @@
-import { getIsServer } from './server';
-
-if (
-    !getIsServer() &&
-    typeof Element != 'undefined' &&
-    !('remove' in Element.prototype)
-) {
+if (typeof Element != 'undefined' && !('remove' in Element.prototype)) {
     (Element as any).prototype['remove'] = function() {
         if (this.parentNode) {
             this.parentNode.removeChild(this);

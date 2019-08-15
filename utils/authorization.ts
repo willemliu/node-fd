@@ -1,7 +1,6 @@
 import { AuthenticationError } from 'apollo-server-micro';
 
 export function checkCredentials(username: string, password: string) {
-    console.log(username, password);
     return username === 'test' && password === 'test';
 }
 
@@ -18,6 +17,7 @@ export function checkBasicAuth(authorizationValue: string) {
  * @param authorizationValue Authorization header value
  */
 export function graphqlResolverAuthorized(authorizationValue: string) {
+    console.log('graphqlResolverAuthorized', authorizationValue);
     if (
         process.env.BASIC_AUTH &&
         authorizationValue !== process.env.BASIC_AUTH

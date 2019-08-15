@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import AudioStore from '../stores/Audio';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-import { apolloClient } from '../graphql/client';
+import { getApolloClient } from '../graphql/client';
 
 interface Branded {
     analyticsInfo: {
@@ -122,12 +122,12 @@ function Branded(props: Props) {
     );
 }
 
-Branded.getInitialProps = async (ctx: NextPageContext): Promise<Props> => {
-    const { articleId } = ctx.query;
+Branded.getInitialProps = async ({ req, query }: any): Promise<Props> => {
+    const { articleId } = query;
     let data: { brandStories: [Branded] };
 
     try {
-        const graphRes = await apolloClient.query({
+        const graphRes = await getApolloClient(req ? true : false).query({
             query: gql`
             {
                 brandStories(id: ${articleId}) {

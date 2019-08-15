@@ -7,7 +7,6 @@ import Document, {
 } from 'next/document';
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
-import { setIsServer } from '../utils/server';
 import { canonical } from '../utils/canonical';
 import {
     checkCredentials,
@@ -19,14 +18,9 @@ import basicAuth from 'basic-auth';
 export default class MyDocument extends Document<any> {
     static async getInitialProps(ctx: DocumentContext) {
         let authorized = false;
-        if (
-            process.env.BASIC_AUTH &&
-            ctx.req &&
-            ctx.req.headers.authorization &&
-            ctx.req.headers.authorization.indexOf('Basic ') > -1
-        ) {
+        if (process.env.BASIC_AUTH && ctx.req) {
             const credentials = basicAuth(ctx.req);
-            if (credentials) {
+            if (credentials && ctx.req.headers.authorization) {
                 authorized =
                     checkCredentials(credentials.name, credentials.pass) ||
                     checkBasicAuth(ctx.req.headers.authorization);
@@ -40,8 +34,6 @@ export default class MyDocument extends Document<any> {
 
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
-
-        setIsServer(true);
 
         if (!process.env.PREVIEW && ctx.res) {
             ctx.res.setHeader(

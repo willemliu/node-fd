@@ -12,7 +12,8 @@ import SpecialsListComponent from '../components/SpecialsListComponent';
 import md5 from 'md5';
 import { canonical } from '../utils/canonical';
 import { gql } from 'apollo-boost';
-import { apolloClient } from '../graphql/client';
+import { getApolloClient } from '../graphql/client';
+import { NextPageContext } from 'next';
 
 interface Home {
     newsFragmentsModel: {
@@ -81,10 +82,11 @@ function BNR(props: Props) {
     );
 }
 
-BNR.getInitialProps = async (): Promise<Props> => {
+BNR.getInitialProps = async ({ req }: NextPageContext): Promise<Props> => {
     let home: Home;
+
     try {
-        const graphRes = await apolloClient.query({
+        const graphRes = await getApolloClient(req ? true : false).query({
             query: gql`
                 {
                     home {
