@@ -1,6 +1,6 @@
 import Cors from 'micro-cors';
 import 'fetch-everywhere';
-import { ApolloServer } from 'apollo-server-micro';
+import { ApolloServer, AuthenticationError } from 'apollo-server-micro';
 import { audios } from '../../graphql/resolvers/audios';
 import { articles } from '../../graphql/resolvers/articles';
 import { brandStories } from '../../graphql/resolvers/brandStories';
@@ -9,6 +9,7 @@ import { home } from '../../graphql/resolvers/home';
 import { typeDefs } from '../../graphql/typeDefs/typeDefs';
 import depthLimit from 'graphql-depth-limit';
 import { createComplexityLimitRule } from 'graphql-validation-complexity';
+import basicAuth from 'basic-auth';
 
 const ComplexityLimitRule = createComplexityLimitRule(1000, {
     onCost: (cost: number) => {
@@ -52,6 +53,18 @@ const apolloServer = new ApolloServer({
             console.log('query depths:', JSON.stringify(depths, null, 2));
         }),
     ],
+    context: ({ req }) => {
+        const user = basicAuth(req);
+        // We can prevent users from seeing our schema if they are not logged in.
+        // if (!user) throw new AuthenticationError('you must be logged in');
+        return {
+            user: {
+                username: user ? user.name : '',
+                password: user ? user.pass : '',
+                authorization: req.headers.authorization,
+            },
+        };
+    },
 });
 
 export const config = {

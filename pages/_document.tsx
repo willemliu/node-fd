@@ -9,7 +9,11 @@ import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 import { setIsServer } from '../utils/server';
 import { canonical } from '../utils/canonical';
-import { checkCredentials, denied } from '../utils/authorization';
+import {
+    checkCredentials,
+    denied,
+    checkBasicAuth,
+} from '../utils/authorization';
 import basicAuth from 'basic-auth';
 
 export default class MyDocument extends Document<any> {
@@ -25,7 +29,7 @@ export default class MyDocument extends Document<any> {
             if (credentials) {
                 authorized =
                     checkCredentials(credentials.name, credentials.pass) ||
-                    ctx.req.headers.authorization === process.env.BASIC_AUTH;
+                    checkBasicAuth(ctx.req.headers.authorization);
             }
         }
 

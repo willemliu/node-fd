@@ -1,4 +1,5 @@
 import mongodb, { Db } from 'mongodb';
+import { graphqlResolverAuthorized } from '../../utils/authorization';
 const mongoClient = mongodb.MongoClient;
 const dbName = 'bnr';
 const collection = 'tokens';
@@ -12,13 +13,14 @@ export async function validateToken(
     context: any,
     info: any
 ) {
+    // We do authorization checks in resolver so we can manage access per resolver.
+    graphqlResolverAuthorized(context.user.authorization);
     context.callbackWaitsForEmptyEventLoop = false;
     console.log('validate token', args.token);
     return await db(args.token);
 }
 
 async function db(token: string) {
-    console.log(url);
     let result: boolean = false;
     let clientCon;
     try {
