@@ -2,13 +2,14 @@ import ApolloClient from 'apollo-boost';
 
 let apolloClient: any;
 
-export function getApolloClient(isServer?: boolean) {
+export function getApolloClient(
+    customHeaders?: { authorization: string | undefined } | boolean
+) {
     if (!apolloClient) {
         let headers: any = {};
-        if (isServer) {
-            headers['Authorization'] = process.env.BASIC_AUTH;
+        if (customHeaders) {
+            headers = customHeaders;
         }
-        console.log('APOLLO CLIENT HEADERS', headers);
         apolloClient = new ApolloClient({
             uri: `${process.env.GRAPHQL_SERVER}`,
             name: 'BNR Nieuwsradio',

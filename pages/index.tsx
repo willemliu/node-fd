@@ -85,8 +85,14 @@ function BNR(props: Props) {
 BNR.getInitialProps = async ({ req }: NextPageContext): Promise<Props> => {
     let home: Home;
 
+    if (req) {
+        console.log(req.headers.authorization);
+    }
+
     try {
-        const graphRes = await getApolloClient(req ? true : false).query({
+        const graphRes = await getApolloClient(
+            req ? { authorization: req.headers.authorization } : false
+        ).query({
             query: gql`
                 {
                     home {

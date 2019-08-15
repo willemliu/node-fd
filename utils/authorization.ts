@@ -13,11 +13,10 @@ export function checkBasicAuth(authorizationValue: string) {
 }
 
 /**
- *
+ * Determine if user has enough rights. When not, then throw an AuthenticationError.
  * @param authorizationValue Authorization header value
  */
 export function graphqlResolverAuthorized(authorizationValue: string) {
-    console.log('graphqlResolverAuthorized', authorizationValue);
     if (
         process.env.BASIC_AUTH &&
         authorizationValue !== process.env.BASIC_AUTH

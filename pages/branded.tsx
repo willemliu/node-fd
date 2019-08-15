@@ -127,7 +127,9 @@ Branded.getInitialProps = async ({ req, query }: any): Promise<Props> => {
     let data: { brandStories: [Branded] };
 
     try {
-        const graphRes = await getApolloClient(req ? true : false).query({
+        const graphRes = await getApolloClient(
+            req ? { authorization: req.headers.authorization } : false
+        ).query({
             query: gql`
             {
                 brandStories(id: ${articleId}) {
