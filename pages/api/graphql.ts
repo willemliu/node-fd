@@ -10,6 +10,7 @@ import { typeDefs } from '../../graphql/typeDefs/typeDefs';
 import depthLimit from 'graphql-depth-limit';
 import { createComplexityLimitRule } from 'graphql-validation-complexity';
 import basicAuth from 'basic-auth';
+import { graphqlResolverAuthorized } from '../../utils/authorization';
 
 const ComplexityLimitRule = createComplexityLimitRule(1000, {
     onCost: (cost: number) => {
@@ -42,8 +43,8 @@ const notProduction =
 const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection: notProduction && !process.env.BASIC_AUTH,
-    playground: notProduction || !!process.env.BASIC_AUTH,
+    introspection: notProduction,
+    playground: notProduction,
     engine: {
         apiKey: process.env.ENGINE_API_KEY,
     },
@@ -56,7 +57,7 @@ const apolloServer = new ApolloServer({
     context: ({ req }) => {
         const user = basicAuth(req);
         // We can prevent users from seeing our schema if they are not logged in.
-        // if (!user) throw new AuthenticationError('you must be logged in');
+        graphqlResolverAuthorized(req.headers.authorization);
         return {
             user: {
                 username: user ? user.name : '',
