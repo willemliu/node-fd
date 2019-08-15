@@ -4,7 +4,6 @@
     "builds": [{ "src": "package.json", "use": "@now/next" }],
     "build": {
         "env": {
-            "BASIC_AUTH": "@dev-bnr-basic-auth",
             "ENGINE_API_KEY": "@bnr-preview-apollo-engine-api-key",
             "ENVIRONMENT": "PREVIEW",
             "GENERATE_ETAGS": "@bnr-preview-generate-etags",
@@ -15,7 +14,6 @@
         }
     },
     "env": {
-        "BASIC_AUTH": "@dev-bnr-basic-auth",
         "ENGINE_API_KEY": "@bnr-preview-apollo-engine-api-key",
         "ENVIRONMENT": "PREVIEW",
         "GENERATE_ETAGS": "@bnr-preview-generate-etags",

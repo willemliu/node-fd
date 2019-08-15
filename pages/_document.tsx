@@ -1,17 +1,45 @@
-import Document, { Html, Main, NextScript, Head } from 'next/document';
+import Document, {
+    Html,
+    Main,
+    NextScript,
+    Head,
+    DocumentContext,
+} from 'next/document';
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 import { setIsServer } from '../utils/server';
 import { canonical } from '../utils/canonical';
+import { checkCredentials, denied } from '../utils/authorization';
+import basicAuth from 'basic-auth';
 
 export default class MyDocument extends Document<any> {
-    static async getInitialProps(ctx: any) {
+    static async getInitialProps(ctx: DocumentContext) {
+        let authorized = false;
+        if (
+            process.env.BASIC_AUTH &&
+            ctx.req &&
+            ctx.req.headers.authorization &&
+            ctx.req.headers.authorization.indexOf('Basic ') > -1
+        ) {
+            const credentials = basicAuth(ctx.req);
+            if (credentials) {
+                authorized =
+                    checkCredentials(credentials.name, credentials.pass) ||
+                    ctx.req.headers.authorization === process.env.BASIC_AUTH;
+            }
+        }
+
+        if (!authorized && ctx.res) {
+            denied(ctx.res);
+            return;
+        }
+
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
         setIsServer(true);
 
-        if (!process.env.PREVIEW) {
+        if (!process.env.PREVIEW && ctx.res) {
             ctx.res.setHeader(
                 'Cache-Control',
                 // 'max-age=0, max-stale, s-maxage=1, stale-while-revalidate=60'
