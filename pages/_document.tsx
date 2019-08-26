@@ -68,7 +68,7 @@ export default class MyDocument extends Document<any> {
                         httpEquiv="Content-Type"
                         content="text/html; charset=UTF-8"
                     />
-                    <meta name="theme-color" color="#ffd200" />
+                    <meta name="theme-color" content="#ffd200" />
                     <meta httpEquiv="X-UA-Compatible" content="IE=11" />
                     {canonical()}
                     <link rel="manifest" href="/static/manifest.json" />
